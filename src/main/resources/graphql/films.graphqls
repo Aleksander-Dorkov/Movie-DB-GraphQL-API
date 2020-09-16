@@ -1,0 +1,23 @@
+type Film {
+    filmId:ID!,
+    name:String,
+    launchYear:String
+}
+type Actor {
+    actorId:ID!,
+    firstName:String,
+    lastName:String,
+    address:String,
+    dob:String
+}
+input ActorForm {
+    actorId:ID,
+    firstName:String,
+    lastName:String,
+    address:String,
+}
+enum Episode {
+    NEWHOPE
+    EMPIRE
+    JEDI
+}

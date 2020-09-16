@@ -1,0 +1,14 @@
+schema {
+    query: Query,
+    mutation: Mutation
+}
+type Query {
+    getAllActors:[Actor]
+    getActorById(id:Int):Actor
+    getAllFilms:[Film]
+    getFilmById(id:Int):Film
+}
+type Mutation{
+    updateActorAddress(id:Int,address:String):Actor,
+    updateActorForm(actor:ActorForm):Actor
+}

@@ -1,0 +1,66 @@
+server:
+  port: 8080
+#DB
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/data_store
+    password: 1234
+    username: postgres
+    initialization-mode: always
+  #Jackson
+  jackson:
+    serialization:
+      indent-output: false
+  #JPA
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        default_schema: private
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        generate_statistics: true
+    show-sql: true
+#Logging
+logging:
+  level:
+    org:
+      hibernate:
+        stat: debug
+    com:
+      secure:
+        example: trace
+    root: info
+#Actuator
+management:
+  endpoint:
+    health:
+      show-details: always
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, shutdown, info, metrics, mappings, conditions
+  server:
+    port: 8080
+
+graphql:
+  servlet:
+    mapping: /graphql
+    enabled: true
+    corsEnabled: true
+#    cors:
+#      allowed-origins: http://some.domain.com
+    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
+    exception-handlers-enabled: true
+    contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
+
+graphiql:
+  headers:
+    Authorization: "Bearer pesho"
+  props:
+    variables:
+      editorTheme: 'solarized light'
