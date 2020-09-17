@@ -1,2 +1,2 @@
-insert into private.authorities (authority)
+insert into authorities (authority)
 values ('ROLE_USER'), ('ROLE_ADMIN');

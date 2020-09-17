@@ -3,7 +3,7 @@ server:
 #DB
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/data_store
+    url: jdbc:postgresql://localhost:5432/postgres
     password: 1234
     username: postgres
     initialization-mode: always
@@ -18,7 +18,7 @@ spring:
       ddl-auto: create
     properties:
       hibernate:
-        default_schema: private
+        default_schema: public
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
         generate_statistics: true
@@ -64,3 +64,4 @@ graphiql:
   props:
     variables:
       editorTheme: 'solarized light'
+

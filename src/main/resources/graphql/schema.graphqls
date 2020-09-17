@@ -1,0 +1,12 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+type Mutation {
+    register(form: UserRegistrationForm): User
+    login(form: UserLoginForm): User
+}
+
+type Query{
+    getUserById(id:ID):User
+}

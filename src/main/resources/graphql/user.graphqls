@@ -1,0 +1,16 @@
+input UserRegistrationForm {
+    username: String
+    password: String
+    confirmPassword: String
+}
+
+input UserLoginForm {
+    username: String,
+    password: String
+}
+
+type User {
+    username: String
+    accountNonLocked: Boolean
+    registrationDate: String
+}
