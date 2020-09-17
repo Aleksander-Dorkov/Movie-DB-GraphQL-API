@@ -1,4 +1,4 @@
-package com.expence_tracking.app.dto.bindings;
+package com.expence_tracking.app.dto.bindings.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserLoginForm
+public class RegistrationForm
 {
     private String username;
     private String password;
-    private Boolean rememberMe;
+    private String confirmPassword;
 }

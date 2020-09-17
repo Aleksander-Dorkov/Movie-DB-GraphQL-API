@@ -9,13 +9,28 @@ input UserLoginForm {
     password: String,
     rememberMe: Boolean
 }
+input UserChangePasswordForm {
+    userId:ID,
+    oldPassword: String,
+    newPassword: String,
+}
+
+input UserLockAccountForm {
+    userId:ID,
+    password: String,
+}
 
 type JWTToken {
-    idToken:String
+    idToken: String
 }
 
 type User {
     username: String
-    accountNonLocked: Boolean
     registrationDate: String
+    accountNonLocked: Boolean,
+    authorities: [Authirty]
+}
+type Authirty{
+    authorityId: ID,
+    authority: String
 }

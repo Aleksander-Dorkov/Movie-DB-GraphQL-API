@@ -4,9 +4,16 @@ schema {
 }
 type Mutation {
     register(form: UserRegistrationForm): User
-    login(form: UserLoginForm): JWTToken
+    authenticate(form: UserLoginForm): JWTToken,
+    changePassword(from: UserChangePasswordForm): Message
+    lockAccount(from: UserLockAccountForm): Message
+
 }
 
-type Query{
+type Query {
     getUserById(id:ID):User
+}
+
+type Message {
+    message:String
 }

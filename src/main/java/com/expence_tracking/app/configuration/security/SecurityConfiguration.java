@@ -2,12 +2,10 @@ package com.expence_tracking.app.configuration.security;
 
 import com.expence_tracking.app.configuration.security.jwt.JWTConfigurer;
 import com.expence_tracking.app.configuration.security.jwt.TokenProvider;
-import com.expence_tracking.app.services.user.UserAccountService;
+import com.expence_tracking.app.services.user.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -26,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
 {
 
 
-    private final UserAccountService userDetailsService;
+    private final UserService userDetailsService;
     private final BCryptPasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
 

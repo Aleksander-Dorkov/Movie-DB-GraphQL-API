@@ -10,13 +10,13 @@ import javax.validation.constraints.Min;
 
 @Service
 @RequiredArgsConstructor
-public class UserReadService implements GraphQLQueryResolver
+public class UserQueryService implements GraphQLQueryResolver
 {
     private final UserRepository userRepository;
 
     public User getUserById(@Min(1) Long id)
     {
-        return new User();
+        return this.userRepository.findByUserId(id);
     }
 
 }

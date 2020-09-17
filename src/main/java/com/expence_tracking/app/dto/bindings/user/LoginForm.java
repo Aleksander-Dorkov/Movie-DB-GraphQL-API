@@ -1,17 +1,15 @@
-package com.expence_tracking.app.dto.bindings;
+package com.expence_tracking.app.dto.bindings.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.Size;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserRegistrationForm
+public class LoginForm
 {
     private String username;
     private String password;
-    private String confirmPassword;
+    private Boolean rememberMe;
 }
