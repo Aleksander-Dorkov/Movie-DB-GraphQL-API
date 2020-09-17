@@ -25,12 +25,13 @@ type JWTToken {
 }
 
 type User {
+    userId:ID
     username: String
     registrationDate: String
     accountNonLocked: Boolean,
-    authorities: [Authirty]
+    authorities: [Authorty]
 }
-type Authirty{
+type Authorty {
     authorityId: ID,
     authority: String
 }

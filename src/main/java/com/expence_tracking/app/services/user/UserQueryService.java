@@ -5,10 +5,13 @@ import com.expence_tracking.app.repostiories.UserRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.Min;
+import java.util.List;
 
 @Service
+@Validated
 @RequiredArgsConstructor
 public class UserQueryService implements GraphQLQueryResolver
 {
@@ -17,6 +20,11 @@ public class UserQueryService implements GraphQLQueryResolver
     public User getUserById(@Min(1) Long id)
     {
         return this.userRepository.findByUserId(id);
+    }
+
+    public List<User> getAllUsers()
+    {
+        return this.userRepository.findAllBy();
     }
 
 }

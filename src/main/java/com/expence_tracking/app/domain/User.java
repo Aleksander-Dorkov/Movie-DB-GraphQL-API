@@ -23,6 +23,7 @@ public class User implements UserDetails
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
     private String password;
+    @Column(unique = true, nullable = false)
     private String username;
     private Date registrationDate;
     private Boolean accountNonLocked;

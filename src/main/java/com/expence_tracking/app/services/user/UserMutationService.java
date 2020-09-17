@@ -27,8 +27,8 @@ import javax.validation.Valid;
 import java.util.Date;
 
 @Service
-@RequiredArgsConstructor
 @Validated
+@RequiredArgsConstructor
 public class UserMutationService implements GraphQLMutationResolver
 {
     private final UserRepository userRepository;
@@ -36,10 +36,10 @@ public class UserMutationService implements GraphQLMutationResolver
     private final AuthenticationManager authenticationManager;
     private final ModelMapper modelMapper;
     private final TokenProvider tokenProvider;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @PreAuthorize("isAnonymous()")
-    public JWTToken authenticate(LoginForm form)
+    public JWTToken authenticate(@Valid LoginForm form)
     {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword());
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
@@ -59,7 +59,7 @@ public class UserMutationService implements GraphQLMutationResolver
     }
 
     @PreAuthorize("isAnonymous()")
-    public User register(@Valid RegistrationForm form)
+    public Message register(@Valid RegistrationForm form)
     {
         if (this.userRepository.findByUsername(form.getUsername()) != null)
         {
@@ -69,31 +69,32 @@ public class UserMutationService implements GraphQLMutationResolver
         user.setRegistrationDate(new Date());
         user.setAccountNonLocked(true);
         user.getAuthorities().add(this.authorityRepository.getOne(1L));
-        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setPassword(this.passwordEncoder.encode(user.getPassword()));
         this.userRepository.save(user);
-        return user;
+        return new Message("Successfully registered");
     }
 
-    public Message changePassword(ChangePasswordForm form) throws PasswordMissMatchException
+    public Message changePassword(@Valid ChangePasswordForm form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
-        if (!user.getPassword().equals(this.bCryptPasswordEncoder.encode(form.getOldPassword())))
+        if (!this.passwordEncoder.matches(form.getOldPassword(), user.getPassword()))
         {
             throw new PasswordMissMatchException("The password you inputted doesnt match your current password");
         }
-        user.setPassword(this.bCryptPasswordEncoder.encode(form.getNewPassword()));
+        user.setPassword(this.passwordEncoder.encode(form.getNewPassword()));
         this.userRepository.save(user);
-        return new Message("Successfully change password");
+        return new Message("Successfully changed password");
     }
 
-    public Message lockAccount(LockAccountForm form) throws PasswordMissMatchException
+    public Message lockAccount(@Valid LockAccountForm form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
-        if (!user.getPassword().equals(this.bCryptPasswordEncoder.encode(form.getPassword())))
+        if (!this.passwordEncoder.matches(form.getPassword(), user.getPassword()))
         {
             throw new PasswordMissMatchException("The password you inputted doesnt match your current password");
         }
         user.setAccountNonLocked(false);
+        this.userRepository.save(user);
         return new Message("Successfully locked account");
     }
 

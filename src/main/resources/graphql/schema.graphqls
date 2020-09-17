@@ -3,7 +3,7 @@ schema {
     mutation: Mutation
 }
 type Mutation {
-    register(form: UserRegistrationForm): User
+    register(form: UserRegistrationForm): Message
     authenticate(form: UserLoginForm): JWTToken,
     changePassword(from: UserChangePasswordForm): Message
     lockAccount(from: UserLockAccountForm): Message
@@ -12,6 +12,7 @@ type Mutation {
 
 type Query {
     getUserById(id:ID):User
+    getAllUsers:[User]
 }
 
 type Message {

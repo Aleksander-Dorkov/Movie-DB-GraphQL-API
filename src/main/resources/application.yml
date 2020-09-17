@@ -57,6 +57,11 @@ graphql:
     # if you want to @ExceptionHandler annotation for custom GraphQLErrors
     exception-handlers-enabled: true
     contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
+  playground:
+    cdn:
+      enabled: true
+    headers:
+      Authorization: "Bearer pesho"
 
 graphiql:
   headers:
@@ -64,4 +69,5 @@ graphiql:
   props:
     variables:
       editorTheme: 'solarized light'
+
 
