@@ -61,11 +61,13 @@ graphql:
     cdn:
       enabled: true
     headers:
-      Authorization: "Bearer pesho"
+      Authorization: "Bearer token-value"
 
 graphiql:
+  cdn:
+    enabled: true
   headers:
-    Authorization: "Bearer pesho"
+    Authorization: "Bearer token-value"
   props:
     variables:
       editorTheme: 'solarized light'

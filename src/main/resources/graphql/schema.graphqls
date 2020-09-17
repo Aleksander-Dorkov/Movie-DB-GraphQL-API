@@ -2,19 +2,21 @@ schema {
     query: Query
     mutation: Mutation
 }
+
 type Mutation {
     register(form: UserRegistrationForm): Message
-    authenticate(form: UserLoginForm): JWTToken,
+    authenticate(form: UserLoginForm): JWTToken
     changePassword(from: UserChangePasswordForm): Message
     lockAccount(from: UserLockAccountForm): Message
-
+    adminLockAccount(form: AdminLockAccountForm): Message
+    adminChangeAuthority(form: AdminChangeAuthorityForm): Message
 }
 
 type Query {
-    getUserById(id:ID):User
-    getAllUsers:[User]
+    getUserById(id: ID): User
+    getAllUsers: [User]
 }
 
 type Message {
-    message:String
+    message: String
 }

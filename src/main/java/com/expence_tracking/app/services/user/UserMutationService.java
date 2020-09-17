@@ -5,10 +5,7 @@ import com.expence_tracking.app.configuration.exceptions.UserAlreadyExistsExcept
 import com.expence_tracking.app.configuration.security.jwt.JWTToken;
 import com.expence_tracking.app.configuration.security.jwt.TokenProvider;
 import com.expence_tracking.app.domain.User;
-import com.expence_tracking.app.dto.bindings.user.ChangePasswordForm;
-import com.expence_tracking.app.dto.bindings.user.LockAccountForm;
-import com.expence_tracking.app.dto.bindings.user.LoginForm;
-import com.expence_tracking.app.dto.bindings.user.RegistrationForm;
+import com.expence_tracking.app.dto.bindings.user.*;
 import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.AuthorityRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
@@ -98,4 +95,16 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully locked account");
     }
 
+    public Message adminLockAccount(AdminLockAccountForm form)
+    {
+        this.userRepository.updateAccountLock(form.getAccountNonLocked(), form.getUserId());
+        String msg = form.getAccountNonLocked() ? "unlocked" : "locked";
+        return new Message("Successfully " + msg + " the users account");
+    }
+
+    public Message adminChangeAuthority(AdminChangeAuthorityForm form)
+    {
+        this.userRepository.updateAuthority(form.getUserId(), form.getAuthorityId());
+        return new Message("Successfully changed the users authority");
+    }
 }

@@ -90,18 +90,19 @@
 			<version>7.0.1</version>
 		</dependency>
 
-		<!-- to embed GraphiQL tool -->
-		<dependency>
-			<groupId>com.graphql-java-kickstart</groupId>
-			<artifactId>graphiql-spring-boot-starter</artifactId>
-			<version>7.0.1</version>
-			<scope>runtime</scope>
-		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.graphql-java-kickstart/playground-spring-boot-starter -->
 		<dependency>
 			<groupId>com.graphql-java-kickstart</groupId>
 			<artifactId>playground-spring-boot-starter</artifactId>
 			<version>5.10.0</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- to embed GraphiQL tool -->
+		<dependency>
+			<groupId>com.graphql-java-kickstart</groupId>
+			<artifactId>graphiql-spring-boot-starter</artifactId>
+			<version>7.0.1</version>
 			<scope>runtime</scope>
 		</dependency>
 

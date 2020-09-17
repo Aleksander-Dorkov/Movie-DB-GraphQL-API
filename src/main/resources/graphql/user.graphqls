@@ -5,19 +5,30 @@ input UserRegistrationForm {
 }
 
 input UserLoginForm {
-    username: String,
-    password: String,
+    username: String
+    password: String
     rememberMe: Boolean
 }
+
 input UserChangePasswordForm {
-    userId:ID,
-    oldPassword: String,
-    newPassword: String,
+    userId: ID
+    oldPassword: String
+    newPassword: String
 }
 
 input UserLockAccountForm {
-    userId:ID,
-    password: String,
+    userId: ID
+    password: String
+}
+
+input AdminChangeAuthorityForm {
+    userId: ID
+    authorityId: ID
+}
+
+input AdminLockAccountForm {
+    userId: ID
+    accountNonLocked: Boolean
 }
 
 type JWTToken {
@@ -25,13 +36,14 @@ type JWTToken {
 }
 
 type User {
-    userId:ID
+    userId: ID
     username: String
     registrationDate: String
-    accountNonLocked: Boolean,
+    accountNonLocked: Boolean
     authorities: [Authorty]
 }
+
 type Authorty {
-    authorityId: ID,
+    authorityId: ID
     authority: String
 }
