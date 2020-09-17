@@ -6,7 +6,12 @@ input UserRegistrationForm {
 
 input UserLoginForm {
     username: String,
-    password: String
+    password: String,
+    rememberMe: Boolean
+}
+
+type JWTToken {
+    idToken:String
 }
 
 type User {

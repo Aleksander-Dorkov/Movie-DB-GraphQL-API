@@ -4,7 +4,7 @@ schema {
 }
 type Mutation {
     register(form: UserRegistrationForm): User
-    login(form: UserLoginForm): User
+    login(form: UserLoginForm): JWTToken
 }
 
 type Query{

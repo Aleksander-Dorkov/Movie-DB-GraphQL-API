@@ -11,10 +11,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class UserRegistrationForm
 {
-    @Size(min = 5)
     private String username;
-    @Size(min = 5)
     private String password;
-    @Size(min = 5)
     private String confirmPassword;
 }

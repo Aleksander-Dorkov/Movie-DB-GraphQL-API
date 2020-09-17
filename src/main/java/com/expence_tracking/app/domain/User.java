@@ -2,6 +2,7 @@ package com.expence_tracking.app.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -11,7 +12,12 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity(name = "users")
-public class User
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "authoritiesJoin", attributeNodes = {
+                @NamedAttributeNode("authorities")
+        })
+})
+public class User implements UserDetails
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,36 +38,43 @@ public class User
         this.authorities = new HashSet<>();
     }
 
+    @Override
     public Set<Authority> getAuthorities()
     {
         return this.authorities;
     }
 
+    @Override
     public String getPassword()
     {
         return this.password;
     }
 
+    @Override
     public String getUsername()
     {
         return this.username;
     }
 
+    @Override
     public boolean isAccountNonLocked()
     {
         return this.accountNonLocked;
     }
 
+    @Override
     public boolean isAccountNonExpired()
     {
         return true;
     }
 
+    @Override
     public boolean isCredentialsNonExpired()
     {
         return true;
     }
 
+    @Override
     public boolean isEnabled()
     {
         return true;
