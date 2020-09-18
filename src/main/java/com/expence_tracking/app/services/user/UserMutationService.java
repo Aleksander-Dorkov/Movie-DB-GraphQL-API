@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Service
@@ -63,7 +64,7 @@ public class UserMutationService implements GraphQLMutationResolver
             throw new UserAlreadyExistsException("User with this username is all ready registered");
         }
         User user = this.modelMapper.map(form, User.class);
-        user.setRegistrationDate(new Date());
+        user.setRegistrationDate(LocalDateTime.now());
         user.setAccountNonLocked(true);
         user.getAuthorities().add(this.authorityRepository.getOne(1L));
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));

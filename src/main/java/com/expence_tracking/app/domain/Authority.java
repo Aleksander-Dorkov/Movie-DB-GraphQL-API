@@ -5,10 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -17,7 +14,8 @@ import javax.persistence.Id;
 public class Authority implements GrantedAuthority
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authority_generator")
+    @SequenceGenerator(name = "authority_generator", sequenceName = "authority_seq", allocationSize = 1)
     private Long authorityId;
     private String authority;
 

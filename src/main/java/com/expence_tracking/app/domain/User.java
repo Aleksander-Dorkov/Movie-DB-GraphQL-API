@@ -5,6 +5,7 @@ import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,16 +21,16 @@ import java.util.Set;
 public class User implements UserDetails
 {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_generator")
+    @SequenceGenerator(name = "user_generator", sequenceName = "user_seq", allocationSize = 1)
     private Long userId;
     private String password;
     @Column(unique = true, nullable = false)
     private String username;
-    private Date registrationDate;
+    private LocalDateTime registrationDate;
     private Boolean accountNonLocked;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "users_authorities",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "userId"),
             inverseJoinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authorityId"))
     private Set<Authority> authorities;
