@@ -15,6 +15,8 @@ import java.util.List;
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long>
 {
+    Category findByCategoryId(Long categoryId);
+
     List<Category> findAllByOwner(User user);
 
     @Modifying

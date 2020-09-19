@@ -1,8 +1,7 @@
 package com.expence_tracking.app.domain;
 
 import com.expence_tracking.app.domain.enums.CategoryType;
-import com.vladmihalcea.hibernate.type.array.IntArrayType;
-import com.vladmihalcea.hibernate.type.array.StringArrayType;
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,17 +11,17 @@ import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @Entity(name = "categories")
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "user_id"})})
 @TypeDefs({
         @TypeDef(
-                name = "string-array",
-                typeClass = StringArrayType.class
+                name = "list-array",
+                typeClass = ListArrayType.class
         )
 })
 public class Category
@@ -34,7 +33,7 @@ public class Category
     @Enumerated(EnumType.STRING)
     private CategoryType type;
     private String name;
-    @Type(type = "string-array")
+    @Type(type = "list-array")
     @Column(
             name = "sub_categories",
             columnDefinition = "text[]"
@@ -44,5 +43,4 @@ public class Category
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "userId")
     private User owner;
-
 }
