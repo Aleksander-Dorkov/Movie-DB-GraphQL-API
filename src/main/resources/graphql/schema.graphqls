@@ -15,6 +15,7 @@ type Mutation {
 type Query {
     getUserById(id: ID): User
     getAllUsers: [User]
+    getAllAuthorities: [Authorty]
 }
 
 type Message {

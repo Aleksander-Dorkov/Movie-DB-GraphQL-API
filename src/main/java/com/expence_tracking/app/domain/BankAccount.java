@@ -21,11 +21,13 @@ public class BankAccount
     @SequenceGenerator(name = "bank_account_generator", sequenceName = "bank_account_seq", allocationSize = 1)
     private Long bankAccountId;
     private String title;
-    private String description;
+    @Enumerated(EnumType.STRING)
     private AccountType accountType;
-    private BigDecimal startingBalance;
+    private BigDecimal balance;
     private LocalDateTime creationDate;
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)
     private User userId;
+    @OneToMany(mappedBy = "bankAccountId", fetch = FetchType.LAZY)
+    private List<Transaction> transactions;
 }
