@@ -21,6 +21,7 @@ public class BankAccount
     @SequenceGenerator(name = "bank_account_generator", sequenceName = "bank_account_seq", allocationSize = 1)
     private Long bankAccountId;
     private String title;
+    private String description;
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
     private BigDecimal balance;

@@ -13,9 +13,13 @@ type Mutation {
 }
 
 type Query {
+    #    user
     getUserById(id: ID): User
     getAllUsers: [User]
     getAllAuthorities: [Authorty]
+    #    bank account
+    getBankAccountById(id:ID): BankAccount
+    getAllBankAccountsByUserId(id:ID): [BankAccount]
 }
 
 type Message {

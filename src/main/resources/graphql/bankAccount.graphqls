@@ -1,0 +1,8 @@
+type BankAccount {
+    bankAccountId: ID
+    title: String
+    description: String
+    accountType: String
+    balance: Float
+    creationDate: String
+}

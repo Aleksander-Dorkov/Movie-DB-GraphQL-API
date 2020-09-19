@@ -32,13 +32,13 @@ VALUES (1, 1),
        (12, 1),
        (13, 1);
 
-insert into bank_accounts(bank_account_id, title, account_type, balance, creation_date, user_id)
-VALUES (nextval('bank_account_seq'), 'Account name', 'CHECKING', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'SAVINGS', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'CASH', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'CREDIT_CARD', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'CREDIT_CARD', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'CREDIT_CARD', 1000, now(), 1);
+insert into bank_accounts(bank_account_id, title, description, account_type, balance, creation_date, user_id)
+VALUES (nextval('bank_account_seq'), 'Account name', 'random description', 'CHECKING', 1000, now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'SAVINGS', 1000, now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CASH', 1000, now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', 1000, now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', 1000, now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', 1000, now(), 1);
 
 insert into categories (category_id, name, sub_categories, type, balance, user_id)
 VALUES (nextval('category_seq'), 'Education', '{"School","University","Private Lessons"}', 'EXPENSE', 0, 1),
