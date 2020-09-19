@@ -4,9 +4,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.CONFLICT)
-public class SubCategoryAllReadyExistException extends Throwable
+public class SubCategoryAllReadyExistException extends RuntimeException
 {
-    public SubCategoryAllReadyExistException(String s)
+    public SubCategoryAllReadyExistException(String message)
     {
+        super(message);
     }
 }

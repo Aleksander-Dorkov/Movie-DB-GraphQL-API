@@ -58,6 +58,11 @@ public class CategoryMutationService implements GraphQLMutationResolver
     {
         Category category = this.categoryRepository.findByCategoryId(form.getCategoryId());
         List<String> subCategories = category.getSubCategories();
+        if (subCategories.contains(form.getNewName()))
+        {
+            throw new SubCategoryAllReadyExistException("Subcategory with this name all ready exists");
+
+        }
         for (int i = 0; i < subCategories.size(); i++)
         {
             if (subCategories.get(i).equals(form.getOldName()))

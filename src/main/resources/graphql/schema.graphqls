@@ -17,6 +17,8 @@ type Mutation {
     #    category
     createNewCategory(form: CategoryCreateForm): Message
     editCategory(form: CategoryEditForm): Message
+    createNewSubCategory(form: SubCategoryCreateForm): Message
+    editSubCategory(form: SubCategoryEditForm): Message
 }
 
 type Query {
