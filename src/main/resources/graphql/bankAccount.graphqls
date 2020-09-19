@@ -2,7 +2,10 @@ type BankAccount {
     bankAccountId: ID
     title: String
     description: String
-    accountType: String
+    accountType: AccountType
     balance: Float
     creationDate: String
+}
+enum AccountType{
+    CHECKING, SAVINGS, CASH, CREDIT_CARD
 }

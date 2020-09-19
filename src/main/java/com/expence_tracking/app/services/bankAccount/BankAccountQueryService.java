@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class BankAccountService implements GraphQLQueryResolver
+public class BankAccountQueryService implements GraphQLQueryResolver
 {
     private final BankAccountRepository bankAccountRepository;
     private final UserRepository userRepository;
