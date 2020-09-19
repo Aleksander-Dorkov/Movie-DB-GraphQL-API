@@ -12,8 +12,8 @@ type Mutation {
     adminLockAccount(form: AdminLockAccountForm): Message
     adminChangeAuthority(form: AdminChangeAuthorityForm): Message
     #    bank account
-    newBankAccount(form: BankAccountCreateForm): BankAccount
-    editBankAccount(form: BankAccountEditForm): BankAccount
+    newBankAccount(form: BankAccountCreateForm): Message
+    editBankAccount(form: BankAccountEditForm): Message
 }
 
 type Query {
@@ -24,6 +24,8 @@ type Query {
     #    bank account
     getBankAccountById(id: ID): BankAccount
     getAllBankAccountsByUserId(id: ID): [BankAccount]
+    #    category
+    getAllCategoriesByUserId(id: ID): [Category]
 }
 
 type Message {

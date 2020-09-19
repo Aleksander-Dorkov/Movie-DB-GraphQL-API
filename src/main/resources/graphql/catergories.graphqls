@@ -1,0 +1,13 @@
+type Category {
+    categoryId: ID
+    name: String
+    subCategories: [String]
+    type: CategoryType
+    balance: Float
+}
+
+enum CategoryType {
+    EXPENSE
+    INCOME
+}
+
