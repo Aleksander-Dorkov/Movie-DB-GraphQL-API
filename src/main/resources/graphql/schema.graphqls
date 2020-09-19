@@ -4,12 +4,16 @@ schema {
 }
 
 type Mutation {
+    #    user/admin
     register(form: UserRegistrationForm): Message
     authenticate(form: UserLoginForm): JWTToken
     changePassword(from: UserChangePasswordForm): Message
     lockAccount(from: UserLockAccountForm): Message
     adminLockAccount(form: AdminLockAccountForm): Message
     adminChangeAuthority(form: AdminChangeAuthorityForm): Message
+    #    bank account
+    newBankAccount(form: BankAccountCreateForm): BankAccount
+    editBankAccount(form: BankAccountEditForm): BankAccount
 }
 
 type Query {
@@ -18,8 +22,8 @@ type Query {
     getAllUsers: [User]
     getAllAuthorities: [Authorty]
     #    bank account
-    getBankAccountById(id:ID): BankAccount
-    getAllBankAccountsByUserId(id:ID): [BankAccount]
+    getBankAccountById(id: ID): BankAccount
+    getAllBankAccountsByUserId(id: ID): [BankAccount]
 }
 
 type Message {

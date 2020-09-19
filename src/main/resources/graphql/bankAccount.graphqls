@@ -1,11 +1,29 @@
+input BankAccountCreateForm {
+    userId: ID
+    title: String
+    description: String
+    accountType: AccountType
+    initialBalance: Float
+}
+input BankAccountEditForm {
+    bankAccountId: ID
+    title: String
+    description: String
+    accountType: AccountType
+    initialBalance: Float
+}
 type BankAccount {
     bankAccountId: ID
     title: String
     description: String
     accountType: AccountType
-    balance: Float
+    initialBalance: Float
+    currentBalance: Float
     creationDate: String
 }
-enum AccountType{
-    CHECKING, SAVINGS, CASH, CREDIT_CARD
+enum AccountType {
+    CHECKING
+    SAVINGS
+    CASH
+    CREDIT_CARD
 }
