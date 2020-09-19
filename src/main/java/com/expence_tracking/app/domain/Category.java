@@ -11,7 +11,9 @@ import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.List;
 
 @Getter
 @Setter
@@ -37,8 +39,8 @@ public class Category
             name = "sub_categories",
             columnDefinition = "text[]"
     )
-    private String[] subCategories;
-    private BigInteger balance;
+    private List<String> subCategories;
+    private BigDecimal balance;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "userId")
     private User owner;

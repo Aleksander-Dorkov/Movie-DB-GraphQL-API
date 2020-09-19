@@ -14,6 +14,9 @@ type Mutation {
     #    bank account
     newBankAccount(form: BankAccountCreateForm): Message
     editBankAccount(form: BankAccountEditForm): Message
+    #    category
+    createNewCategory(form: CategoryCreateForm): Message
+    editCategory(form: CategoryEditForm): Message
 }
 
 type Query {

@@ -1,3 +1,14 @@
+input CategoryCreateForm {
+    userId: ID
+    name: String
+    type: CategoryType
+}
+
+input CategoryEditForm {
+    categoryId: ID
+    name: String
+    type: CategoryType
+}
 type Category {
     categoryId: ID
     name: String
@@ -10,4 +21,3 @@ enum CategoryType {
     EXPENSE
     INCOME
 }
-
