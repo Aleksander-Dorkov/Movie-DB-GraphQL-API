@@ -26,9 +26,9 @@ public class BankAccount
     private AccountType accountType;
     private BigDecimal balance;
     private LocalDateTime creationDate;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)
-    private User userId;
-    @OneToMany(mappedBy = "bankAccountId", fetch = FetchType.LAZY)
+    private User owner;
+    @OneToMany(mappedBy = "bankAccount", fetch = FetchType.LAZY)
     private List<Transaction> transactions;
 }

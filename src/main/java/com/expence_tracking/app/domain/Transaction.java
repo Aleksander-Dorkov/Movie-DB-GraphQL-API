@@ -26,13 +26,13 @@ public class Transaction
     private BigDecimal balance;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "caregory_id", referencedColumnName = "categoryId", nullable = false)
-    private Category categoryId;
+    private Category category;
     private String categoryName;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bank_account_id", referencedColumnName = "bankAccountId", nullable = false)
-    private BankAccount bankAccountId;
+    private BankAccount bankAccount;
     @ManyToOne(fetch = FetchType.LAZY) //possible null
     @JoinColumn(name = "transfer_account_id", referencedColumnName = "bankAccountId")
-    private BankAccount transferAccountId;
+    private BankAccount transferAccount;
 
 }

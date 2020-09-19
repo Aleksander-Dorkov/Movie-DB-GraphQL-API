@@ -41,6 +41,6 @@ public class Category
     private BigInteger balance;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "userId")
-    private User userId;
+    private User owner;
 
 }
