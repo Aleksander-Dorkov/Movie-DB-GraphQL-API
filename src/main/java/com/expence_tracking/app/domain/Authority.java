@@ -10,7 +10,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "authorities")
+@Entity
+@Table(name = "authorities")
 public class Authority implements GrantedAuthority
 {
     @Id

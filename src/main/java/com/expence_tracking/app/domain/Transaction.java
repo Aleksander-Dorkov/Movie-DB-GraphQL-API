@@ -12,7 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "transactions")
+@Entity
+@Table(name = "transactions",
+        indexes = {
+                @Index(columnList = "category_id", name = "category_id_index")
+        })
 @NamedEntityGraphs({
         @NamedEntityGraph(name = "fetchAll", attributeNodes = {
                 @NamedAttributeNode("category"),

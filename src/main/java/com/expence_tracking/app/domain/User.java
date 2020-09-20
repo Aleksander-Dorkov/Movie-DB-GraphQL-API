@@ -12,7 +12,8 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity(name = "users")
+@Entity
+@Table(name = "users")
 @NamedEntityGraphs({
         @NamedEntityGraph(name = "authoritiesJoin", attributeNodes = {
                 @NamedAttributeNode("authorities")

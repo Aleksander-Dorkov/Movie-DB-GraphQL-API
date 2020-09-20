@@ -11,10 +11,15 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "categories")
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = {"name", "user_id"})
-})
+@Entity
+@Table(name = "categories",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = {"name", "user_id"})
+
+        },
+        indexes = {
+                @Index(columnList = "user_id", name = "user_id_index")
+        })
 public class Category
 {
     @Id

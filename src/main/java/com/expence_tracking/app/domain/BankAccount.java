@@ -13,7 +13,11 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "bank_accounts")
+@Entity
+@Table(name = "bank_accounts",
+        indexes = {
+                @Index(columnList = "user_id", name = "user_id_index")
+        })
 public class BankAccount
 {
     @Id
