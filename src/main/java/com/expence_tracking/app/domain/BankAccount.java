@@ -25,7 +25,6 @@ public class BankAccount
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
     private BigDecimal initialBalance;
-    private BigDecimal currentBalance;
     private LocalDateTime creationDate;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "userId", nullable = false)

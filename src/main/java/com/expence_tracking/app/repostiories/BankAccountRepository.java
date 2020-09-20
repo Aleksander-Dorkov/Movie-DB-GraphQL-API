@@ -23,7 +23,7 @@ public interface BankAccountRepository extends JpaRepository<BankAccount, Long>
     @Modifying
     @Transactional
     @Query("update bank_accounts set title=:title, description=:description, accountType=:accountType,initialBalance=:initialBalance where bankAccountId=:id")
-    void updateBankAccount(@Param("title") String title,
+    int updateBankAccount(@Param("title") String title,
                                   @Param("description") String description,
                                   @Param("accountType") AccountType accountType,
                                   @Param("initialBalance") BigDecimal initialBalance,

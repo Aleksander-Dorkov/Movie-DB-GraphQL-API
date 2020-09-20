@@ -18,7 +18,6 @@ type BankAccount {
     description: String
     accountType: AccountType
     initialBalance: Float
-    currentBalance: Float
     creationDate: String
 }
 enum AccountType {

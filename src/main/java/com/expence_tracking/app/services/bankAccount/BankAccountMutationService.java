@@ -1,10 +1,11 @@
 package com.expence_tracking.app.services.bankAccount;
 
+import com.expence_tracking.app.configuration.exceptions.GenericSQLException;
 import com.expence_tracking.app.domain.BankAccount;
 import com.expence_tracking.app.dto.binding.bank_account.BankAccountCreateForm;
 import com.expence_tracking.app.dto.binding.bank_account.BankAccountEditForm;
-import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.BankAccountRepository;
+import com.expence_tracking.app.repostiories.TransactionRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
 import graphql.kickstart.tools.GraphQLMutationResolver;
 import lombok.RequiredArgsConstructor;
@@ -19,25 +20,32 @@ public class BankAccountMutationService implements GraphQLMutationResolver
 {
     private final UserRepository userRepository;
     private final BankAccountRepository bankAccountRepository;
+    private final TransactionRepository transactionRepository;
     private final ModelMapper modelMapper;
 
-    public Message createBankAccount(BankAccountCreateForm form)
+    public BankAccount createBankAccount(BankAccountCreateForm form)
     {
 
         BankAccount bankAccount = this.modelMapper.map(form, BankAccount.class);
         bankAccount.setCreationDate(LocalDateTime.now());
         bankAccount.setOwner(this.userRepository.getOne(form.getUserId()));
-        bankAccount.setCurrentBalance(form.getInitialBalance());
-        this.bankAccountRepository.save(bankAccount);
-        return new Message("Successfully added a new account");
+        bankAccount.setInitialBalance(form.getInitialBalance());
+        Long bankAccountId = this.bankAccountRepository.save(bankAccount).getBankAccountId();
+        return this.bankAccountRepository.findByBankAccountId(bankAccountId);
     }
 
-    public Message updateBankAccount(BankAccountEditForm form)
+    public BankAccount updateBankAccount(BankAccountEditForm form) throws GenericSQLException
     {
-        this.bankAccountRepository.updateBankAccount(
+        int rows = this.bankAccountRepository.updateBankAccount(
                 form.getTitle(), form.getDescription(),
                 form.getAccountType(), form.getInitialBalance(),
                 form.getBankAccountId());
-        return new Message("Successfully edited your account");
+        if (rows > 0)
+        {
+            return this.bankAccountRepository.findByBankAccountId(form.getBankAccountId());
+        } else
+        {
+            throw new GenericSQLException("Something went wrong while executing sql");
+        }
     }
 }
