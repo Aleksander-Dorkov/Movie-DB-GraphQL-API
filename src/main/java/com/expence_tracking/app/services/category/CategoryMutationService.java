@@ -1,10 +1,10 @@
 package com.expence_tracking.app.services.category;
 
 import com.expence_tracking.app.domain.Category;
-import com.expence_tracking.app.dto.bindings.category.CategoryCreateForm;
-import com.expence_tracking.app.dto.bindings.category.CategoryEditForm;
-import com.expence_tracking.app.dto.bindings.category.SubCategoryCreateForm;
-import com.expence_tracking.app.dto.bindings.category.SubCategoryEditForm;
+import com.expence_tracking.app.dto.binding.category.CategoryCreateForm;
+import com.expence_tracking.app.dto.binding.category.CategoryEditForm;
+import com.expence_tracking.app.dto.binding.category.SubCategoryCreateForm;
+import com.expence_tracking.app.dto.binding.category.SubCategoryEditForm;
 import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.CategoryRepository;
 import com.expence_tracking.app.repostiories.UserRepository;

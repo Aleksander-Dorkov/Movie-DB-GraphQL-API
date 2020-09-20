@@ -5,7 +5,7 @@ import com.expence_tracking.app.configuration.exceptions.UserAlreadyExistsExcept
 import com.expence_tracking.app.configuration.security.jwt.JWTToken;
 import com.expence_tracking.app.configuration.security.jwt.TokenProvider;
 import com.expence_tracking.app.domain.User;
-import com.expence_tracking.app.dto.bindings.user.*;
+import com.expence_tracking.app.dto.binding.user.*;
 import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.AuthorityRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
@@ -22,7 +22,6 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Service
 @Validated
@@ -68,7 +67,7 @@ public class UserMutationService implements GraphQLMutationResolver
         user.setAccountNonLocked(true);
         user.getAuthorities().add(this.authorityRepository.getOne(1L));
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        this.userRepository.save(user);
+        System.out.println(this.userRepository.save(user).getUserId());
         return new Message("Successfully registered");
     }
 

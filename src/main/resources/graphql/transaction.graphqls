@@ -1,7 +1,7 @@
 type Transaction {
     transactionId: ID
     note: String
-    creationDate: String
+    date: String
     type: TransactionType
     balance: Float
     subCategoryName: String

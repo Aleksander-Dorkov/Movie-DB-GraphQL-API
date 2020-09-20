@@ -27,7 +27,7 @@ public class Transaction
     @SequenceGenerator(name = "transaction_generation", sequenceName = "transaction_seq", allocationSize = 1)
     private Long transactionId;
     private String note;
-    private LocalDateTime creationDate;
+    private LocalDateTime date;
     @Enumerated(EnumType.STRING)
     private TransactionType type;
     private BigDecimal balance;

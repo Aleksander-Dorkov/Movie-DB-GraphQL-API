@@ -53,7 +53,7 @@ VALUES (nextval('category_seq'), 'Education', '{"School","University","Private L
        (nextval('category_seq'), 'Transfer', '{"Transfer"}', 'INCOME', 100, 1);
 
 
-insert into transactions(transaction_id, type, note, balance, creation_date, bank_account_id, sub_category_name,
+insert into transactions(transaction_id, type, note, balance, date, bank_account_id, sub_category_name,
                          category_id)
     --inserting expenses and incomes
 --EXPENSE 1-4 INCOME 5-8
@@ -66,7 +66,7 @@ values (nextval('transaction_seq'), 'EXPENSE', 'random note', 100, now(), 1, 'Sc
        (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 'Petty Cash', 7),
        (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 'Bonus', 8);
 
-insert into transactions(transaction_id, type, note, balance, creation_date, bank_account_id, receiver_account_id)
+insert into transactions(transaction_id, type, note, balance, date, bank_account_id, receiver_account_id)
 values (nextval('transaction_seq'), 'TRANSFER', 'random note', 100, now(), 1, 2);
 
 

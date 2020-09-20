@@ -1,4 +1,4 @@
-package com.expence_tracking.app.dto.bindings.user;
+package com.expence_tracking.app.dto.binding.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

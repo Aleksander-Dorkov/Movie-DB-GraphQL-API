@@ -1,4 +1,4 @@
-package com.expence_tracking.app.dto.bindings.bank_account;
+package com.expence_tracking.app.dto.binding.bank_account;
 
 import com.expence_tracking.app.domain.enums.AccountType;
 import lombok.Getter;
@@ -10,9 +10,9 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BankAccountEditForm
+public class BankAccountCreateForm
 {
-    private Long bankAccountId;
+    private Long userId;
     private String title;
     private String description;
     private AccountType accountType;

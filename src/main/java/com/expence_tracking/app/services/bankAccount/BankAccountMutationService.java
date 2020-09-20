@@ -1,8 +1,8 @@
 package com.expence_tracking.app.services.bankAccount;
 
 import com.expence_tracking.app.domain.BankAccount;
-import com.expence_tracking.app.dto.bindings.bank_account.BankAccountCreateForm;
-import com.expence_tracking.app.dto.bindings.bank_account.BankAccountEditForm;
+import com.expence_tracking.app.dto.binding.bank_account.BankAccountCreateForm;
+import com.expence_tracking.app.dto.binding.bank_account.BankAccountEditForm;
 import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.BankAccountRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Service

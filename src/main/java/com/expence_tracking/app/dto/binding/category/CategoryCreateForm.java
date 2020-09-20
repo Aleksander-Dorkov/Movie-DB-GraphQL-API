@@ -1,4 +1,4 @@
-package com.expence_tracking.app.dto.bindings.category;
+package com.expence_tracking.app.dto.binding.category;
 
 import com.expence_tracking.app.domain.enums.CategoryType;
 import lombok.Getter;
@@ -8,9 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CategoryEditForm
+public class CategoryCreateForm
 {
-    private Long categoryId;
+    private Long userId;
     private String name;
     private CategoryType type;
 }

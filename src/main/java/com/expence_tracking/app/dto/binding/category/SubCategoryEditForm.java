@@ -1,4 +1,4 @@
-package com.expence_tracking.app.dto.bindings.category;
+package com.expence_tracking.app.dto.binding.category;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
