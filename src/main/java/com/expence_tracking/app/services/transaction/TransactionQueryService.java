@@ -8,7 +8,6 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,19 +18,18 @@ public class TransactionQueryService implements GraphQLQueryResolver
     private final BankAccountRepository bankAccountRepository;
     private final TransactionRepository transactionRepository;
 
-    public Transaction getByTransactionId(Long id)
+    public Transaction transactionById(Long id)
     {
         return this.transactionRepository.findByTransactionId(id);
     }
 
-    public List<Transaction> getAllTransactionsByBankAccountId(Long id)
+    public List<Transaction> allTransactionsByBankAccountId(Long id)
     {
-        System.out.println("tuka sme @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         BankAccount one = this.bankAccountRepository.getOne(id);
         return this.transactionRepository.findAllByBankAccount(one);
     }
 
-    public List<Transaction> getAllTransactionsByByUserId(Long id)
+    public List<Transaction> allTransactionsByByUserId(Long id)
     {
         List<BankAccount> bankAccounts = this.transactionRepository
                 .findAllBankAccountIdsForUser(id).stream()

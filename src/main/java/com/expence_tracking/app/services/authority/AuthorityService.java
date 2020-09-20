@@ -14,7 +14,7 @@ public class AuthorityService implements GraphQLQueryResolver
 {
     private final AuthorityRepository authorityRepository;
 
-    public List<Authority> getAllAuthorities()
+    public List<Authority> allAuthorities()
     {
         return this.authorityRepository.findAll();
     }

@@ -17,12 +17,12 @@ public class UserQueryService implements GraphQLQueryResolver
 {
     private final UserRepository userRepository;
 
-    public User getUserById(@Min(1) Long id)
+    public User userById(@Min(1) Long id)
     {
         return this.userRepository.findByUserId(id);
     }
 
-    public List<User> getAllUsers()
+    public List<User> allUsers()
     {
         return this.userRepository.findAllBy();
     }

@@ -5,36 +5,36 @@ schema {
 
 type Mutation {
     #    user/admin
-    register(form: UserRegistrationForm): Message
-    authenticate(form: UserLoginForm): JWTToken
-    changePassword(from: UserChangePasswordForm): Message
-    lockAccount(from: UserLockAccountForm): Message
-    adminLockAccount(form: AdminLockAccountForm): Message
-    adminChangeAuthority(form: AdminChangeAuthorityForm): Message
+    createUser(form: UserRegistrationForm): Message
+    createJWT(form: UserLoginForm): JWTToken
+    updatePassword(from: UserChangePasswordForm): Message
+    updateAccountLock(from: UserLockAccountForm): Message
+    updateAccountLockAdmin(form: AdminLockAccountForm): Message
+    updateAuthorityAdmin(form: AdminChangeAuthorityForm): Message
     #    bank account
-    newBankAccount(form: BankAccountCreateForm): Message
-    editBankAccount(form: BankAccountEditForm): Message
+    createBankAccount(form: BankAccountCreateForm): Message
+    updateBankAccount(form: BankAccountEditForm): Message
     #    category
-    createNewCategory(form: CategoryCreateForm): Message
-    editCategory(form: CategoryEditForm): Message
-    createNewSubCategory(form: SubCategoryCreateForm): Message
-    editSubCategory(form: SubCategoryEditForm): Message
+    createCategory(form: CategoryCreateForm): Message
+    updateCategory(form: CategoryEditForm): Message
+    createSubCategory(form: SubCategoryCreateForm): Message
+    updateSubCategory(form: SubCategoryEditForm): Message
 }
 
 type Query {
     #    user
-    getUserById(id: ID): User
-    getAllUsers: [User]
-    getAllAuthorities: [Authorty]
+    userById(id: ID): User
+    allUsers: [User]
+    allAuthorities: [Authorty]
     #    bank account
-    getBankAccountById(id: ID): BankAccount
-    getAllBankAccountsByUserId(id: ID): [BankAccount]
+    bankAccountById(id: ID): BankAccount
+    allBankAccountsByUserId(id: ID): [BankAccount]
     #    category
-    getAllCategoriesByUserId(id: ID): [Category]
+    allCategoriesByUserId(id: ID): [Category]
     #  transactions
-    getByTransactionId(id: ID): Transaction
-    getAllTransactionsByBankAccountId(id: ID): [Transaction]
-    getAllTransactionsByByUserId(id: ID): [Transaction]
+    transactionById(id: ID): Transaction
+    allTransactionsByBankAccountId(id: ID): [Transaction]
+    allTransactionsByByUserId(id: ID): [Transaction]
 }
 
 type Message {

@@ -25,7 +25,7 @@ public class CategoryMutationService implements GraphQLMutationResolver
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public Message createNewCategory(CategoryCreateForm form)
+    public Message createCategory(CategoryCreateForm form)
     {
         Category category = this.modelMapper.map(form, Category.class);
         category.setBalance(BigDecimal.valueOf(0));
@@ -34,13 +34,13 @@ public class CategoryMutationService implements GraphQLMutationResolver
         return new Message("Successfully added a new Category");
     }
 
-    public Message editCategory(CategoryEditForm form)
+    public Message updateCategory(CategoryEditForm form)
     {
         this.categoryRepository.editCategory(form.getName(), form.getType(), form.getCategoryId());
         return new Message("Successfully added a new Category");
     }
 
-    public Message createNewSubCategory(SubCategoryCreateForm form) throws SubCategoryAllReadyExistException
+    public Message createSubCategory(SubCategoryCreateForm form) throws SubCategoryAllReadyExistException
     {
         Category category = this.categoryRepository.findByCategoryId(form.getCategoryId());
         if (!category.getSubCategories().contains(form.getName()))
@@ -54,7 +54,7 @@ public class CategoryMutationService implements GraphQLMutationResolver
         return new Message("Successfully added a new SubCategory");
     }
 
-    public Message editSubCategory(SubCategoryEditForm form)
+    public Message updateSubCategory(SubCategoryEditForm form)
     {
         Category category = this.categoryRepository.findByCategoryId(form.getCategoryId());
         List<String> subCategories = category.getSubCategories();

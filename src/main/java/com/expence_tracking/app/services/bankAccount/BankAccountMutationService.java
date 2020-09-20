@@ -22,7 +22,7 @@ public class BankAccountMutationService implements GraphQLMutationResolver
     private final BankAccountRepository bankAccountRepository;
     private final ModelMapper modelMapper;
 
-    public Message newBankAccount(BankAccountCreateForm form)
+    public Message createBankAccount(BankAccountCreateForm form)
     {
 
         BankAccount bankAccount = this.modelMapper.map(form, BankAccount.class);
@@ -33,7 +33,7 @@ public class BankAccountMutationService implements GraphQLMutationResolver
         return new Message("Successfully added a new account");
     }
 
-    public Message editBankAccount(BankAccountEditForm form)
+    public Message updateBankAccount(BankAccountEditForm form)
     {
         this.bankAccountRepository.updateBankAccount(
                 form.getTitle(), form.getDescription(),

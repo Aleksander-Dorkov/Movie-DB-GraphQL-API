@@ -17,7 +17,7 @@ public class CategoryQueryService implements GraphQLQueryResolver
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
 
-    public List<Category> getAllCategoriesByUserId(Long userId)
+    public List<Category> allCategoriesByUserId(Long userId)
     {
         return this.categoryRepository.findAllByOwner(this.userRepository.getOne(userId));
     }

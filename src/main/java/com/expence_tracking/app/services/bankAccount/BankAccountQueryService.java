@@ -17,14 +17,14 @@ public class BankAccountQueryService implements GraphQLQueryResolver
     private final BankAccountRepository bankAccountRepository;
     private final UserRepository userRepository;
 
-    public List<BankAccount> getAllBankAccountsByUserId(Long id)
-    {
-        return this.bankAccountRepository.findAllByOwner(this.userRepository.getOne(id));
-    }
-
-    public BankAccount getBankAccountById(Long id)
+    public BankAccount bankAccountById(Long id)
     {
         return this.bankAccountRepository.findByBankAccountId(id);
+    }
+
+    public List<BankAccount> allBankAccountsByUserId(Long id)
+    {
+        return this.bankAccountRepository.findAllByOwner(this.userRepository.getOne(id));
     }
 
 }
