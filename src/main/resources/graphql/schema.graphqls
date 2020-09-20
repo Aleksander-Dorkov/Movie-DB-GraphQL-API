@@ -31,6 +31,10 @@ type Query {
     getAllBankAccountsByUserId(id: ID): [BankAccount]
     #    category
     getAllCategoriesByUserId(id: ID): [Category]
+    #  transactions
+    getByTransactionId(id: ID): Transaction
+    getAllTransactionsByBankAccountId(id: ID): [Transaction]
+    getAllTransactionsByByUserId(id: ID): [Transaction]
 }
 
 type Message {

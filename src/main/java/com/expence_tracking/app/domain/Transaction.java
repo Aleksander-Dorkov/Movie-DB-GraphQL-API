@@ -13,6 +13,13 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @Entity(name = "transactions")
+@NamedEntityGraphs({
+        @NamedEntityGraph(name = "fetchAll", attributeNodes = {
+                @NamedAttributeNode("bankAccount"),
+                @NamedAttributeNode("transferAccount"),
+                @NamedAttributeNode("category")
+        })
+})
 public class Transaction
 {
     @Id
@@ -25,14 +32,16 @@ public class Transaction
     private TransactionType type;
     private BigDecimal balance;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "caregory_id", referencedColumnName = "categoryId", nullable = false)
-    private Category category;
-    private String categoryName;
+    @JoinColumn(name = "category_id", referencedColumnName = "categoryId")
+    private Category category; //possible null
+    private String subCategoryName; //possible null
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bank_account_id", referencedColumnName = "bankAccountId", nullable = false)
     private BankAccount bankAccount;
-    @ManyToOne(fetch = FetchType.LAZY) //possible null
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "transfer_account_id", referencedColumnName = "bankAccountId")
-    private BankAccount transferAccount;
+    private BankAccount transferAccount; //possible null
+
+    //fornt end if(type == transfer) category + subCategoryName == transfer and bankAcc-->transfer acc instead of type
 
 }

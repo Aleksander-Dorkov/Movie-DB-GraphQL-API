@@ -1,0 +1,17 @@
+type Transaction {
+    transactionId: ID
+    note: String
+    creationDate: String
+    type: TransactionType
+    balance: Float
+    subCategoryName: String
+    category: Category
+    bankAccount: BankAccount
+    transferAccount: BankAccount
+}
+
+enum TransactionType {
+    EXPENSE
+    INCOME
+    TRANSFER
+}
