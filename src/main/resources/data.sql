@@ -42,21 +42,31 @@ VALUES (nextval('bank_account_seq'), 'Account name', 'random description', 'CHEC
        (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', 1000, 1000, now(), 1);
 
 insert into categories (category_id, name, sub_categories, type, balance, user_id)
-VALUES (nextval('category_seq'), 'Education', '{"School","University","Private Lessons"}', 'EXPENSE', 0, 1),
-       (nextval('category_seq'), 'Transportation', '{"Car","Bus","Subway"}', 'EXPENSE', 0, 1),
-       (nextval('category_seq'), 'Household', '{"Furniture","Appliances","Toiletries"}', 'EXPENSE', 0, 1),
-       (nextval('category_seq'), 'Food', '{"Breakfast","Launch","Dinner"}', 'EXPENSE', 0, 1),
-       (nextval('category_seq'), 'Salary', '{"Salary"}', 'INCOME', 0, 1),
-       (nextval('category_seq'), 'Allowance', '{"Allowance"}', 'INCOME', 0, 1),
-       (nextval('category_seq'), 'Petty Cash', '{"Petty Cash"}', 'INCOME', 0, 1),
-       (nextval('category_seq'), 'Bonus', '{"Bonus"}', 'INCOME', 0, 1),
-       (nextval('category_seq'), 'Transfer', '{"Transfer"}', 'INCOME', 0, 1);
+VALUES (nextval('category_seq'), 'Education', '{"School","University","Private Lessons"}', 'EXPENSE', 100, 1),
+       (nextval('category_seq'), 'Transportation', '{"Car","Bus","Subway"}', 'EXPENSE', 100, 1),
+       (nextval('category_seq'), 'Household', '{"Furniture","Appliances","Toiletries"}', 'EXPENSE', 100, 1),
+       (nextval('category_seq'), 'Food', '{"Breakfast","Launch","Dinner"}', 'EXPENSE', 100, 1),
+       (nextval('category_seq'), 'Salary', '{"Salary"}', 'INCOME', 100, 1),
+       (nextval('category_seq'), 'Allowance', '{"Allowance"}', 'INCOME', 100, 1),
+       (nextval('category_seq'), 'Petty Cash', '{"Petty Cash"}', 'INCOME', 100, 1),
+       (nextval('category_seq'), 'Bonus', '{"Bonus"}', 'INCOME', 100, 1),
+       (nextval('category_seq'), 'Transfer', '{"Transfer"}', 'INCOME', 100, 1);
 
 
--- inserting expenses and incomes
--- insert into transactions(transaction_id, type, note, balance, creation_date, bank_account_id, sub_category_name,
---                          category_id)
--- values (nextval('transaction_seq'), 'EXPENSE', 'random not', 100, now(), 1, '', 1),
---        (nextval('transaction_seq'), 'INCOME', 'random not', 100, now(), 1, '', 1)
+insert into transactions(transaction_id, type, note, balance, creation_date, bank_account_id, sub_category_name,
+                         category_id)
+    --inserting expenses and incomes
+--EXPENSE 1-4 INCOME 5-8
+values (nextval('transaction_seq'), 'EXPENSE', 'random note', 100, now(), 1, 'School', 1),
+       (nextval('transaction_seq'), 'EXPENSE', 'random note', 100, now(), 1, 'Car', 2),
+       (nextval('transaction_seq'), 'EXPENSE', 'random note', 100, now(), 1, 'Furniture', 3),
+       (nextval('transaction_seq'), 'EXPENSE', 'random note', 100, now(), 1, 'Dinner', 4),
+       (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 'Salary', 5),
+       (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 'Allowance', 6),
+       (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 'Petty Cash', 7),
+       (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 'Bonus', 8);
+
+insert into transactions(transaction_id, type, note, balance, creation_date, bank_account_id, receiver_account_id)
+values (nextval('transaction_seq'), 'TRANSFER', 'random note', 100, now(), 1, 2);
 
 
