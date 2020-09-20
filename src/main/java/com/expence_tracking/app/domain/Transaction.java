@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @NamedEntityGraphs({
         @NamedEntityGraph(name = "fetchAll", attributeNodes = {
                 @NamedAttributeNode("bankAccount"),
-                @NamedAttributeNode("transferAccount"),
+                @NamedAttributeNode("receiverAccount"),
                 @NamedAttributeNode("category")
         })
 })
@@ -39,8 +39,8 @@ public class Transaction
     @JoinColumn(name = "bank_account_id", referencedColumnName = "bankAccountId", nullable = false)
     private BankAccount bankAccount;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "transfer_account_id", referencedColumnName = "bankAccountId")
-    private BankAccount transferAccount; //possible null
+    @JoinColumn(name = "receiver_account_id", referencedColumnName = "bankAccountId")
+    private BankAccount receiverAccount; //possible null
 
     //fornt end if(type == transfer) category + subCategoryName == transfer and bankAcc-->transfer acc instead of type
 

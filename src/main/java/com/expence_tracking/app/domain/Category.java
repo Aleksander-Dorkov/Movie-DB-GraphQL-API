@@ -17,7 +17,9 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity(name = "categories")
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "user_id"})})
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"name", "user_id"})
+})
 @TypeDefs({
         @TypeDef(
                 name = "list-array",

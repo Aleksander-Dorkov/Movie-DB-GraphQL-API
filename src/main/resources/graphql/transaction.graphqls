@@ -7,7 +7,7 @@ type Transaction {
     subCategoryName: String
     category: Category
     bankAccount: BankAccount
-    transferAccount: BankAccount
+    receiverAccount: BankAccount
 }
 
 enum TransactionType {
