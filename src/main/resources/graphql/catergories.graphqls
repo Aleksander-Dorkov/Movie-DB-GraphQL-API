@@ -1,10 +1,10 @@
-input CategoryCreateForm {
+input CategoryCreate {
     userId: ID
     name: String
     type: CategoryType
 }
 
-input CategoryEditForm {
+input CategoryEdit {
     categoryId: ID
     name: String
     type: CategoryType

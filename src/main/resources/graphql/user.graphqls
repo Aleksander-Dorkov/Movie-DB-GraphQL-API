@@ -1,32 +1,32 @@
-input UserRegistrationForm {
+input UserRegister {
     username: String
     password: String
     confirmPassword: String
 }
 
-input UserLoginForm {
+input UserLogin {
     username: String
     password: String
     rememberMe: Boolean
 }
 
-input UserChangePasswordForm {
+input UserChangePassword {
     userId: ID
     oldPassword: String
     newPassword: String
 }
 
-input UserLockAccountForm {
+input UserLockAccount {
     userId: ID
     password: String
 }
 
-input AdminChangeAuthorityForm {
+input AdminChangeAuthority {
     userId: ID
     authorityId: ID
 }
 
-input AdminLockAccountForm {
+input AdminLockAccount {
     userId: ID
     accountNonLocked: Boolean
 }

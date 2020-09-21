@@ -1,11 +1,11 @@
-input BankAccountCreateForm {
+input BankAccountCreate {
     userId: ID
     title: String
     description: String
     accountType: AccountType
     initialBalance: Float
 }
-input BankAccountEditForm {
+input BankAccountEdit {
     bankAccountId: ID
     title: String
     description: String
