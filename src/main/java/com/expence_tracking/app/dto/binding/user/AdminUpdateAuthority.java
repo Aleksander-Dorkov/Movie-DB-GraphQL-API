@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AdminLockAccount
+public class AdminUpdateAuthority
 {
     private Long userId;
-    private Boolean accountNonLocked;
+    private Long authorityId;
 }

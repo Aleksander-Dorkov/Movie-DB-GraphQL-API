@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserChangePassword
+public class UserCreateJWT
 {
-    private Long userId;
-    private String oldPassword;
-    private String newPassword;
+    private String username;
+    private String password;
+    private Boolean rememberMe;
 }

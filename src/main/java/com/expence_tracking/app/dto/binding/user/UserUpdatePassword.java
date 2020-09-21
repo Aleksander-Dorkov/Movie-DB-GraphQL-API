@@ -7,8 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserLockAccount
+public class UserUpdatePassword
 {
     private Long userId;
-    private String password;
+    private String oldPassword;
+    private String newPassword;
 }

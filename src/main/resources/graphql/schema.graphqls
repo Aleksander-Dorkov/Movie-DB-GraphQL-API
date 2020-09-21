@@ -5,12 +5,12 @@ schema {
 
 type Mutation {
     #    user/admin
-    createUser(form: UserRegister): Message
-    createJWT(form: UserLogin): JWTToken
-    updatePassword(from: UserChangePassword): Message
-    updateAccountLock(from: UserLockAccount): Message
-    updateAccountLockAdmin(form: AdminLockAccount): Message
-    updateAuthorityAdmin(form: AdminChangeAuthority): Message
+    createUser(form: UserCreate): Message
+    createJWT(form: UserCreateJWT): JWTToken
+    updatePassword(from: UserUpdatePassword): Message
+    updateAccountLock(from: UserUpdateAccountLock): Message
+    updateAccountLockAdmin(form: AdminUpdateAccountLock): Message
+    updateAuthorityAdmin(form: AdminUpdateAuthority): Message
     #    bank account
     createBankAccount(form: BankAccountCreate): BankAccount
     updateBankAccount(form: BankAccountEdit): BankAccount

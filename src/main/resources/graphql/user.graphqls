@@ -1,32 +1,32 @@
-input UserRegister {
+input UserCreate {
     username: String
     password: String
     confirmPassword: String
 }
 
-input UserLogin {
+input UserCreateJWT {
     username: String
     password: String
     rememberMe: Boolean
 }
 
-input UserChangePassword {
+input UserUpdatePassword {
     userId: ID
     oldPassword: String
     newPassword: String
 }
 
-input UserLockAccount {
+input UserUpdateAccountLock {
     userId: ID
     password: String
 }
 
-input AdminChangeAuthority {
+input AdminUpdateAuthority {
     userId: ID
     authorityId: ID
 }
 
-input AdminLockAccount {
+input AdminUpdateAccountLock {
     userId: ID
     accountNonLocked: Boolean
 }

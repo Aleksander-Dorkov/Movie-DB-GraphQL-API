@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BankAccountEdit
+public class BankAccountUpdate
 {
     private Long bankAccountId;
     private String title;

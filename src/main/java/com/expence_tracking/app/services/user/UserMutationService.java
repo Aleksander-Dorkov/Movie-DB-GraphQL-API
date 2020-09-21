@@ -36,7 +36,7 @@ public class UserMutationService implements GraphQLMutationResolver
     private final BCryptPasswordEncoder passwordEncoder;
 
     @PreAuthorize("isAnonymous()")
-    public JWTToken createJWT(@Valid UserLogin form)
+    public JWTToken createJWT(@Valid UserCreateJWT form)
     {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword());
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
@@ -71,7 +71,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully registered");
     }
 
-    public Message updatePassword(@Valid UserChangePassword form) throws PasswordMissMatchException
+    public Message updatePassword(@Valid UserUpdatePassword form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
         if (!this.passwordEncoder.matches(form.getOldPassword(), user.getPassword()))
@@ -83,7 +83,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully changed password");
     }
 
-    public Message updateAccountLock(@Valid UserLockAccount form) throws PasswordMissMatchException
+    public Message updateAccountLock(@Valid UserUpdateAccountLock form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
         if (!this.passwordEncoder.matches(form.getPassword(), user.getPassword()))
@@ -95,14 +95,14 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully locked account");
     }
 
-    public Message updateAccountLockAdmin(AdminLockAccount form)
+    public Message updateAccountLockAdmin(AdminUpdateAccountLock form)
     {
         this.userRepository.updateAccountLock(form.getAccountNonLocked(), form.getUserId());
         String msg = form.getAccountNonLocked() ? "unlocked" : "locked";
         return new Message("Successfully " + msg + " the users account");
     }
 
-    public Message updateAuthorityAdmin(AdminChangeAuthority form)
+    public Message updateAuthorityAdmin(AdminUpdateAuthority form)
     {
         this.userRepository.updateAuthority(form.getUserId(), form.getAuthorityId());
         return new Message("Successfully changed the users authority");

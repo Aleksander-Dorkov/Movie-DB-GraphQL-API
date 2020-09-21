@@ -2,7 +2,7 @@ package com.expence_tracking.app.services.category;
 
 import com.expence_tracking.app.domain.Category;
 import com.expence_tracking.app.dto.binding.category.CategoryCreate;
-import com.expence_tracking.app.dto.binding.category.CategoryEdit;
+import com.expence_tracking.app.dto.binding.category.CategoryUpdate;
 import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.CategoryRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
@@ -27,7 +27,7 @@ public class CategoryMutationService implements GraphQLMutationResolver
         return new Message("Successfully added a new Category");
     }
 
-    public Message updateCategory(CategoryEdit form)
+    public Message updateCategory(CategoryUpdate form)
     {
         this.categoryRepository.editCategory(form.getName(), form.getType(), form.getCategoryId());
         return new Message("Successfully added a new Category");
