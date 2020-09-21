@@ -1,7 +1,11 @@
 package com.expence_tracking.app.services.transaction;
 
+import com.expence_tracking.app.domain.BankAccount;
+import com.expence_tracking.app.domain.Category;
 import com.expence_tracking.app.domain.Transaction;
+import com.expence_tracking.app.domain.enums.TransactionType;
 import com.expence_tracking.app.dto.binding.transaction.ExpenseIncomeCreate;
+import com.expence_tracking.app.dto.binding.transaction.TransferCreate;
 import com.expence_tracking.app.repostiories.BankAccountRepository;
 import com.expence_tracking.app.repostiories.CategoryRepository;
 import com.expence_tracking.app.repostiories.TransactionRepository;
@@ -25,6 +29,30 @@ public class TransactionMutationService implements GraphQLMutationResolver
         transaction.setBankAccount(this.bankAccountRepository.getOne(form.getBankAccountId()));
         transaction.setCategory(this.categoryRepository.getOne(form.getCategoryId()));
         Long id = this.transactionRepository.save(transaction).getTransactionId();
+        return this.transactionRepository.findByTransactionId(id);
+    }
+
+    public Transaction createTransfer(TransferCreate form)
+    {
+        BankAccount sender = this.bankAccountRepository.getOne(form.getSenderAccountId());
+        BankAccount receiver = this.bankAccountRepository.getOne(form.getReceiverAccountId());
+        Transaction expense = this.modelMapper.map(form, Transaction.class);
+        expense.setType(TransactionType.EXPENSE);
+        expense.setTransfer(true);
+        expense.setBankAccount(sender);
+        expense.setSenderAccount(sender);
+        expense.setReceiverAccount(receiver);
+        Long id = this.transactionRepository.save(expense).getTransactionId();
+
+        Transaction income = this.modelMapper.map(form, Transaction.class);
+        income.setType(TransactionType.INCOME);
+        income.setTransfer(true);
+        income.setBankAccount(receiver);
+        income.setSenderAccount(sender);
+        income.setReceiverAccount(receiver);
+        this.transactionRepository.save(income);
+
+
         return this.transactionRepository.findByTransactionId(id);
     }
 }

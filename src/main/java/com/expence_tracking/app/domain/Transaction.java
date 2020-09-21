@@ -4,6 +4,7 @@ import com.expence_tracking.app.domain.enums.TransactionType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -42,14 +43,15 @@ public class Transaction
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bank_account_id", referencedColumnName = "bankAccountId", nullable = false)
     private BankAccount bankAccount;
+    @ColumnDefault(value = "false")
     private Boolean transfer;
     //    transfer props, possible nulls
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "receiver_account_id", referencedColumnName = "bankAccountId")
-    private BankAccount receiverAccount; //possible null
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "sender_account_id", referencedColumnName = "bankAccountId")
     private BankAccount senderAccount; //possible null
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "receiver_account_id", referencedColumnName = "bankAccountId")
+    private BankAccount receiverAccount; //possible null
 
 
 }

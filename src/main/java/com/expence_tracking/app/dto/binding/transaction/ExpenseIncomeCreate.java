@@ -17,6 +17,6 @@ public class ExpenseIncomeCreate
     private LocalDateTime date;
     private TransactionType type;
     private BigDecimal balance;
-    private Long categoryId; //possible null
+    private Long categoryId;
     private Long bankAccountId;
 }
