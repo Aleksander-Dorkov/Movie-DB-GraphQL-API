@@ -32,6 +32,12 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>
     @EntityGraph("fetchAll")
     List<Transaction> findAllByBankAccountIn(List<BankAccount> bankAccounts);
 
+    @EntityGraph("fetchAll")
+    List<Transaction> findAllByDateBetween(LocalDateTime start, LocalDateTime end);
+
+    @EntityGraph("fetchAll")
+    List<Transaction> findAllByDateBetweenAndBankAccount(LocalDateTime start, LocalDateTime end, BankAccount bankAccount);
+
     @Modifying
     @Transactional
     @Query("update Transaction set note=:note, date=:date, type=:type, balance=:balance, category=:category where transactionId=:id")

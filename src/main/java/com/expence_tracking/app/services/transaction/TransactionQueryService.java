@@ -8,6 +8,7 @@ import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,6 +37,16 @@ public class TransactionQueryService implements GraphQLQueryResolver
                 .map(this.bankAccountRepository::getOne)
                 .collect(Collectors.toList());
         return this.transactionRepository.findAllByBankAccountIn(bankAccounts);
+    }
 
+    public List<Transaction> allTransactionsByDateBetween(LocalDateTime start, LocalDateTime end)
+    {
+        return this.transactionRepository.findAllByDateBetween(start, end);
+    }
+
+    public List<Transaction> allTransactionsByDateBetweenAndBankAccount(LocalDateTime start, LocalDateTime end, Long id)
+    {
+        BankAccount bankAccount = this.bankAccountRepository.getOne(id);
+        return this.transactionRepository.findAllByDateBetweenAndBankAccount(start, end, bankAccount);
     }
 }
