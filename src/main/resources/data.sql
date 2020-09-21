@@ -32,29 +32,28 @@ VALUES (1, 1),
        (12, 1),
        (13, 1);
 
-insert into bank_accounts(bank_account_id, title, description, account_type, initial_balance,
-                          creation_date, user_id)
-VALUES (nextval('bank_account_seq'), 'Account name', 'random description', 'CHECKING', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'random description', 'SAVINGS', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'random description', 'CASH', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', 1000, now(), 1),
-       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', 1000, now(), 1);
+insert into bank_accounts(bank_account_id, title, description, account_type, creation_date, user_id)
+VALUES (nextval('bank_account_seq'), 'Account name', 'random description', 'CHECKING', now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'SAVINGS', now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CASH', now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', now(), 1),
+       (nextval('bank_account_seq'), 'Account name', 'random description', 'CREDIT_CARD', now(), 1);
 
-insert into categories (category_id, name, type, balance, user_id)
-VALUES (nextval('category_seq'), 'Education', 'EXPENSE', 100, 1),
-       (nextval('category_seq'), 'Transportation', 'EXPENSE', 100, 1),
-       (nextval('category_seq'), 'Household', 'EXPENSE', 100, 1),
-       (nextval('category_seq'), 'Food', 'EXPENSE', 100, 1),
-       (nextval('category_seq'), 'Salary', 'INCOME', 100, 1),
-       (nextval('category_seq'), 'Allowance', 'INCOME', 100, 1),
-       (nextval('category_seq'), 'Petty Cash', 'INCOME', 100, 1),
-       (nextval('category_seq'), 'Bonus', 'INCOME', 100, 1),
-       (nextval('category_seq'), 'Transfer', 'INCOME', 100, 1);
+insert into categories (category_id, name, type, user_id)
+VALUES (nextval('category_seq'), 'Education', 'EXPENSE', 1),
+       (nextval('category_seq'), 'Transportation', 'EXPENSE', 1),
+       (nextval('category_seq'), 'Household', 'EXPENSE', 1),
+       (nextval('category_seq'), 'Food', 'EXPENSE', 1),
+       (nextval('category_seq'), 'Salary', 'INCOME', 1),
+       (nextval('category_seq'), 'Allowance', 'INCOME', 1),
+       (nextval('category_seq'), 'Petty Cash', 'INCOME', 1),
+       (nextval('category_seq'), 'Bonus', 'INCOME', 1),
+       (nextval('category_seq'), 'Transfer', 'INCOME', 1),
+       (nextval('category_seq'), 'Modified Balance', 'INCOME', 1);
 
 
-insert into transactions(transaction_id, type, note, balance, date, bank_account_id,
-                         category_id)
+insert into transactions(transaction_id, type, note, balance, date, bank_account_id, category_id)
     --inserting expenses and incomes
 --EXPENSE 1-4 INCOME 5-8
 values (nextval('transaction_seq'), 'EXPENSE', 'random note', 100, now(), 1, 1),

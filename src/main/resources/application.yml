@@ -33,13 +33,14 @@ logging:
       secure:
         example: trace
     root: info
+
 #Actuator
 management:
   endpoint:
     health:
       show-details: always
     shutdown:
-      enabled: true
+      enabled: false
   endpoints:
     web:
       exposure:

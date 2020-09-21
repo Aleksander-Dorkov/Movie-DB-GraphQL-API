@@ -28,7 +28,6 @@ public class CategoryMutationService implements GraphQLMutationResolver
     public Message createCategory(CategoryCreateForm form)
     {
         Category category = this.modelMapper.map(form, Category.class);
-        category.setBalance(BigDecimal.valueOf(0));
         category.setOwner(this.userRepository.getOne(form.getUserId()));
         this.categoryRepository.save(category);
         return new Message("Successfully added a new Category");

@@ -29,7 +29,6 @@ public class BankAccountMutationService implements GraphQLMutationResolver
         BankAccount bankAccount = this.modelMapper.map(form, BankAccount.class);
         bankAccount.setCreationDate(LocalDateTime.now());
         bankAccount.setOwner(this.userRepository.getOne(form.getUserId()));
-        bankAccount.setInitialBalance(form.getInitialBalance());
         Long bankAccountId = this.bankAccountRepository.save(bankAccount).getBankAccountId();
         return this.bankAccountRepository.findByBankAccountId(bankAccountId);
     }

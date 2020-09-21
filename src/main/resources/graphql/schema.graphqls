@@ -15,8 +15,8 @@ type Mutation {
     createBankAccount(form: BankAccountCreateForm): BankAccount
     updateBankAccount(form: BankAccountEditForm): BankAccount
 #    #    category
-#    createCategory(form: CategoryCreateForm): Message
-#    updateCategory(form: CategoryEditForm): Message
+    createCategory(form: CategoryCreateForm): Message
+    updateCategory(form: CategoryEditForm): Message
 #    createSubCategory(form: SubCategoryCreateForm): Message
 #    updateSubCategory(form: SubCategoryEditForm): Message
 }
@@ -27,14 +27,14 @@ type Query {
     allUsers: [User]
     allAuthorities: [Authorty]
     #    bank account
-#    bankAccountById(id: ID): BankAccount
-#    allBankAccountsByUserId(id: ID): [BankAccount]
+    bankAccountById(id: ID): BankAccount
+    allBankAccountsByUserId(id: ID): [BankAccount]
 #    #    category
-#    allCategoriesByUserId(id: ID): [Category]
+    allCategoriesByUserId(id: ID): [Category]
 #    #  transactions
-#    transactionById(id: ID): Transaction
-#    allTransactionsByBankAccountId(id: ID): [Transaction]
-#    allTransactionsByByUserId(id: ID): [Transaction]
+    transactionById(id: ID): Transaction
+    allTransactionsByBankAccountId(id: ID): [Transaction]
+    allTransactionsByByUserId(id: ID): [Transaction]
 }
 
 type Message {

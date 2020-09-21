@@ -4,14 +4,14 @@ type Transaction {
     date: String
     type: TransactionType
     balance: Float
-    subCategoryName: String
     category: Category
     bankAccount: BankAccount
+    transfer:Boolean
     receiverAccount: BankAccount
+    senderAccount:BankAccount
 }
 
 enum TransactionType {
     EXPENSE
     INCOME
-    TRANSFER
 }

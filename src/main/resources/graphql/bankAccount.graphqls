@@ -10,14 +10,12 @@ input BankAccountEditForm {
     title: String
     description: String
     accountType: AccountType
-    initialBalance: Float
 }
 type BankAccount {
     bankAccountId: ID
     title: String
     description: String
     accountType: AccountType
-    initialBalance: Float
     creationDate: String
 }
 enum AccountType {

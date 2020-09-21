@@ -9,21 +9,11 @@ input CategoryEditForm {
     name: String
     type: CategoryType
 }
-input SubCategoryCreateForm {
-    categoryId: ID
-    name: String
-}
-input SubCategoryEditForm {
-    categoryId: ID
-    oldName: String
-    newName: String
-}
+
 type Category {
     categoryId: ID
     name: String
-    subCategories: [String]
     type: CategoryType
-    balance: Float
 }
 
 enum CategoryType {
