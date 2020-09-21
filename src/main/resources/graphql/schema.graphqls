@@ -19,6 +19,7 @@ type Mutation {
     updateCategory(form: CategoryEdit): Message
     #    transaction
     createExpenseIncome(form: ExpenseIncomeCreate): Transaction
+    updateExpenseIncome(form: ExpenseIncomeUpdate): Transaction
     createTransfer(from: TransferCreate): Transaction
 }
 

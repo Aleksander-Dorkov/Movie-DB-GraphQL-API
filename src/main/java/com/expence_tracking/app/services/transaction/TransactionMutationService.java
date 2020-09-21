@@ -6,7 +6,7 @@ import com.expence_tracking.app.domain.Category;
 import com.expence_tracking.app.domain.Transaction;
 import com.expence_tracking.app.domain.enums.TransactionType;
 import com.expence_tracking.app.dto.binding.transaction.ExpenseIncomeCreate;
-import com.expence_tracking.app.dto.binding.transaction.ExpenseIncomeUpdate;
+import com.expence_tracking.app.dto.binding.transaction.TransactionUpdate;
 import com.expence_tracking.app.dto.binding.transaction.TransferCreate;
 import com.expence_tracking.app.repostiories.BankAccountRepository;
 import com.expence_tracking.app.repostiories.CategoryRepository;
@@ -34,7 +34,7 @@ public class TransactionMutationService implements GraphQLMutationResolver
         return this.transactionRepository.findByTransactionId(id);
     }
 
-    public Transaction updateExpenseIncome(ExpenseIncomeUpdate form)
+    public Transaction updateExpenseIncome(TransactionUpdate form)
     {
         Category one = this.categoryRepository.getOne(form.getCategoryId());
         int i = this.transactionRepository.updateExpenseIncome(

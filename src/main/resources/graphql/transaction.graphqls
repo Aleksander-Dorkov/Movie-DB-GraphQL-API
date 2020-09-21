@@ -6,6 +6,14 @@ input ExpenseIncomeCreate {
     categoryId: ID
     bankAccountId: ID
 }
+input ExpenseIncomeUpdate {
+    transactionId: ID
+    note: String
+    date: String
+    type: TransactionType
+    balance: Float
+    categoryId: ID
+}
 input TransferCreate {
     note: String
     date: String
