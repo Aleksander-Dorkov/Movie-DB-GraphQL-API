@@ -41,4 +41,15 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long>
                             @Param("balance") BigDecimal balance,
                             @Param("category") Category category,
                             @Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query("delete from Transaction where transactionId=:id")
+    void deleteExpenseIncome(@Param("id") Long id);
+
+    @Modifying
+    @Transactional
+    @Query("update Transaction set correspondingTransaction.transactionId=:correspondingTransactionId where transactionId=:transactionId")
+    void updateCorrespondingTransactionId(@Param("correspondingTransactionId") Long correspondingTransactionId,
+                                          @Param("transactionId") Long transactionId);
 }

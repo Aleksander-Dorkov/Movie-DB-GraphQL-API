@@ -65,7 +65,8 @@ values (nextval('transaction_seq'), 'EXPENSE', 'random note', 100, now(), 1, 1),
        (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 7),
        (nextval('transaction_seq'), 'INCOME', 'random note', 100, now(), 1, 8);
 
-insert into transactions(transaction_id, type, note, balance, date, bank_account_id, receiver_account_id)
-values (nextval('transaction_seq'), 'TRANSFER', 'random note', 100, now(), 1, 2);
+-- insert into transactions(transaction_id, type, note, balance, date, bank_account_id, sender_account_id,
+--                          receiver_account_id)
+-- values (nextval('transaction_seq'), 'TRANSFER', 'random note', 100, now(), 1, 1, 2);
 
 

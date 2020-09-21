@@ -52,6 +52,9 @@ public class Transaction
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "receiver_account_id", referencedColumnName = "bankAccountId")
     private BankAccount receiverAccount; //possible null
+    @OneToOne(fetch = FetchType.LAZY, orphanRemoval = true)
+    @JoinColumn(name = "corresponding_transaction", referencedColumnName = "transactionId")
+    private Transaction correspondingTransaction; //possible null
 
 
 }

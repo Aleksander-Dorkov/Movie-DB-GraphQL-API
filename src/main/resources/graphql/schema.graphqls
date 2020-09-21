@@ -17,10 +17,13 @@ type Mutation {
     #    category
     createCategory(form: CategoryCreate): Message
     updateCategory(form: CategoryEdit): Message
-    #    transaction
+    #    transaction - expense/income
     createExpenseIncome(form: ExpenseIncomeCreate): Transaction
     updateExpenseIncome(form: ExpenseIncomeUpdate): Transaction
+    deleteExpenseIncome(id: ID): Message
+    #    transaction - transfers
     createTransfer(from: TransferCreate): Transaction
+    deleteTransfer(id: ID): Message
 }
 
 type Query {

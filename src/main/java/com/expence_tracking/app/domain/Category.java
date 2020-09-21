@@ -17,7 +17,7 @@ import javax.persistence.*;
 
         },
         indexes = {
-                @Index(columnList = "user_id", name = "user_id_index")
+//                @Index(columnList = "user_id", name = "user_id_index")
         })
 public class Category
 {

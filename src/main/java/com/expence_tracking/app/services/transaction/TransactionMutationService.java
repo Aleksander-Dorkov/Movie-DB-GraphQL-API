@@ -8,6 +8,7 @@ import com.expence_tracking.app.domain.enums.TransactionType;
 import com.expence_tracking.app.dto.binding.transaction.ExpenseIncomeCreate;
 import com.expence_tracking.app.dto.binding.transaction.TransactionUpdate;
 import com.expence_tracking.app.dto.binding.transaction.TransferCreate;
+import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.BankAccountRepository;
 import com.expence_tracking.app.repostiories.CategoryRepository;
 import com.expence_tracking.app.repostiories.TransactionRepository;
@@ -50,17 +51,25 @@ public class TransactionMutationService implements GraphQLMutationResolver
         }
     }
 
+    public Message deleteExpenseIncome(Long id)
+    {
+        this.transactionRepository.deleteExpenseIncome(id);
+        return new Message("Successfully deleted");
+    }
+
+
     public Transaction createTransfer(TransferCreate form)
     {
         BankAccount sender = this.bankAccountRepository.getOne(form.getSenderAccountId());
         BankAccount receiver = this.bankAccountRepository.getOne(form.getReceiverAccountId());
+
         Transaction expense = this.modelMapper.map(form, Transaction.class);
         expense.setType(TransactionType.EXPENSE);
         expense.setTransfer(true);
         expense.setBankAccount(sender);
         expense.setSenderAccount(sender);
         expense.setReceiverAccount(receiver);
-        Long id = this.transactionRepository.save(expense).getTransactionId();
+        Long expanseId = this.transactionRepository.save(expense).getTransactionId();
 
         Transaction income = this.modelMapper.map(form, Transaction.class);
         income.setType(TransactionType.INCOME);
@@ -68,9 +77,18 @@ public class TransactionMutationService implements GraphQLMutationResolver
         income.setBankAccount(receiver);
         income.setSenderAccount(sender);
         income.setReceiverAccount(receiver);
-        this.transactionRepository.save(income);
+        Long incomeId = this.transactionRepository.save(income).getTransactionId();
+
+        this.transactionRepository.updateCorrespondingTransactionId(expanseId, incomeId);
+        this.transactionRepository.updateCorrespondingTransactionId(incomeId, expanseId);
 
 
-        return this.transactionRepository.findByTransactionId(id);
+        return this.transactionRepository.findByTransactionId(expanseId);
+    }
+
+    public Message deleteTransfer(Long id)
+    {
+        this.transactionRepository.deleteById(id);
+        return new Message("Successfully deleted");
     }
 }
