@@ -1,3 +1,19 @@
+input ExpenseIncomeCreate {
+    note: String
+    date: String
+    type: TransactionType
+    balance: Float
+    categoryId: ID
+    bankAccountId: ID
+}
+input TransferCreate {
+    note: String
+    date: String
+    balance: Float
+    senderAccountId: ID
+    receiverAccountId: ID
+}
+
 type Transaction {
     transactionId: ID
     note: String
@@ -6,9 +22,9 @@ type Transaction {
     balance: Float
     category: Category
     bankAccount: BankAccount
-    transfer:Boolean
+    transfer: Boolean
     receiverAccount: BankAccount
-    senderAccount:BankAccount
+    senderAccount: BankAccount
 }
 
 enum TransactionType {

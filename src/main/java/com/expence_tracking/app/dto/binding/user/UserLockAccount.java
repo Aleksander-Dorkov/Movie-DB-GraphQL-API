@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AdminLockAccountForm
+public class UserLockAccount
 {
     private Long userId;
-    private Boolean accountNonLocked;
+    private String password;
 }

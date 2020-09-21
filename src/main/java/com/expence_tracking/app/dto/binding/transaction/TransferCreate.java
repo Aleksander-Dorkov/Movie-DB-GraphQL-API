@@ -11,13 +11,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ExpenseIncomeForm
+public class TransferCreate
 {
     private String note;
     private LocalDateTime date;
-    private TransactionType type;
     private BigDecimal balance;
-    private String subCategoryName; //possible null
-    private Long categoryId; //possible null
-    private Long bankAccountId;
+    private Long senderAccountId;
+    private Long receiverAccountId;
 }

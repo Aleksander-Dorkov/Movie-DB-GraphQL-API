@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CategoryCreateForm
+public class CategoryCreate
 {
     private Long userId;
     private String name;

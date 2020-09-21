@@ -7,8 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class AdminChangeAuthorityForm
+public class UserCreate
 {
-    private Long userId;
-    private Long authorityId;
+    private String username;
+    private String password;
+    private String confirmPassword;
 }

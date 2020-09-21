@@ -11,14 +11,13 @@ type Mutation {
     updateAccountLock(from: UserLockAccountForm): Message
     updateAccountLockAdmin(form: AdminLockAccountForm): Message
     updateAuthorityAdmin(form: AdminChangeAuthorityForm): Message
-#    #    bank account
+    #        bank account
     createBankAccount(form: BankAccountCreateForm): BankAccount
     updateBankAccount(form: BankAccountEditForm): BankAccount
-#    #    category
+    #        category
     createCategory(form: CategoryCreateForm): Message
     updateCategory(form: CategoryEditForm): Message
-#    createSubCategory(form: SubCategoryCreateForm): Message
-#    updateSubCategory(form: SubCategoryEditForm): Message
+    #    transaction
 }
 
 type Query {
@@ -29,9 +28,9 @@ type Query {
     #    bank account
     bankAccountById(id: ID): BankAccount
     allBankAccountsByUserId(id: ID): [BankAccount]
-#    #    category
+    #    #    category
     allCategoriesByUserId(id: ID): [Category]
-#    #  transactions
+    #    #  transactions
     transactionById(id: ID): Transaction
     allTransactionsByBankAccountId(id: ID): [Transaction]
     allTransactionsByByUserId(id: ID): [Transaction]

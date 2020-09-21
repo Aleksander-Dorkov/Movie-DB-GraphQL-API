@@ -7,9 +7,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class RegistrationForm
+public class UserChangePassword
 {
-    private String username;
-    private String password;
-    private String confirmPassword;
+    private Long userId;
+    private String oldPassword;
+    private String newPassword;
 }

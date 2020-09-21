@@ -36,7 +36,7 @@ public class UserMutationService implements GraphQLMutationResolver
     private final BCryptPasswordEncoder passwordEncoder;
 
     @PreAuthorize("isAnonymous()")
-    public JWTToken createJWT(@Valid LoginForm form)
+    public JWTToken createJWT(@Valid UserLogin form)
     {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword());
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
@@ -56,7 +56,7 @@ public class UserMutationService implements GraphQLMutationResolver
     }
 
     @PreAuthorize("isAnonymous()")
-    public Message createUser(@Valid RegistrationForm form)
+    public Message createUser(@Valid UserCreate form)
     {
         if (this.userRepository.findByUsername(form.getUsername()) != null)
         {
@@ -71,7 +71,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully registered");
     }
 
-    public Message updatePassword(@Valid ChangePasswordForm form) throws PasswordMissMatchException
+    public Message updatePassword(@Valid UserChangePassword form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
         if (!this.passwordEncoder.matches(form.getOldPassword(), user.getPassword()))
@@ -83,7 +83,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully changed password");
     }
 
-    public Message updateAccountLock(@Valid LockAccountForm form) throws PasswordMissMatchException
+    public Message updateAccountLock(@Valid UserLockAccount form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
         if (!this.passwordEncoder.matches(form.getPassword(), user.getPassword()))
@@ -95,14 +95,14 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully locked account");
     }
 
-    public Message updateAccountLockAdmin(AdminLockAccountForm form)
+    public Message updateAccountLockAdmin(AdminLockAccount form)
     {
         this.userRepository.updateAccountLock(form.getAccountNonLocked(), form.getUserId());
         String msg = form.getAccountNonLocked() ? "unlocked" : "locked";
         return new Message("Successfully " + msg + " the users account");
     }
 
-    public Message updateAuthorityAdmin(AdminChangeAuthorityForm form)
+    public Message updateAuthorityAdmin(AdminChangeAuthority form)
     {
         this.userRepository.updateAuthority(form.getUserId(), form.getAuthorityId());
         return new Message("Successfully changed the users authority");

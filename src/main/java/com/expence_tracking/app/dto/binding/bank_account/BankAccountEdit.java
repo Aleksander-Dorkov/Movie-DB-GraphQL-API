@@ -10,9 +10,9 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @NoArgsConstructor
-public class BankAccountCreateForm
+public class BankAccountEdit
 {
-    private Long userId;
+    private Long bankAccountId;
     private String title;
     private String description;
     private AccountType accountType;
