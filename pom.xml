@@ -88,8 +88,6 @@
             <artifactId>modelmapper</artifactId>
             <version>2.3.8</version>
         </dependency>
-
-
         <!--Grahp_QL-->
         <dependency>
             <groupId>com.graphql-java-kickstart</groupId>

@@ -12,4 +12,5 @@ public class UserCreate
     private String username;
     private String password;
     private String confirmPassword;
+    private Long authorityId;
 }

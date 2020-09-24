@@ -2,6 +2,7 @@ input UserCreate {
     username: String
     password: String
     confirmPassword: String
+    authorityId:ID
 }
 
 input UserCreateJWT {
