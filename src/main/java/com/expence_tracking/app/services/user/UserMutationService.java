@@ -67,7 +67,7 @@ public class UserMutationService implements GraphQLMutationResolver
         user.setAccountNonLocked(true);
         user.getAuthorities().add(this.authorityRepository.getOne(form.getAuthorityId()));
         user.setPassword(this.passwordEncoder.encode(user.getPassword()));
-        System.out.println(this.userRepository.save(user).getUserId());
+        this.userRepository.save(user);
         return new Message("Successfully registered");
     }
 

@@ -4,42 +4,18 @@ schema {
 }
 
 type Mutation {
-    #    user/admin
     createUser(form: UserCreate): Message
     createJWT(form: UserCreateJWT): JWTToken
     updatePassword(from: UserUpdatePassword): Message
     updateAccountLock(from: UserUpdateAccountLock): Message
     updateAccountLockAdmin(form: AdminUpdateAccountLock): Message
     updateAuthorityAdmin(form: AdminUpdateAuthority): Message
-    #    bank account
-    createBankAccount(form: BankAccountCreate): BankAccount
-    updateBankAccount(form: BankAccountEdit): BankAccount
-    #    category
-    createCategory(form: CategoryCreate): Message
-    updateCategory(form: CategoryEdit): Message
-    #    transaction - expense/income
-    createExpenseIncome(form: ExpenseIncomeCreate): Transaction
-    updateExpenseIncome(form: ExpenseIncomeUpdate): Transaction
-    deleteExpenseIncome(id: ID): Message
-    #    transaction - transfers
-    createTransfer(from: TransferCreate): Transaction
-    deleteTransfer(id: ID): Message
 }
 
 type Query {
-    #    user
     userById(id: ID): User
     allUsers: [User]
     allAuthorities: [Authorty]
-    #    bank account
-    bankAccountById(id: ID): BankAccount
-    allBankAccountsByUserId(id: ID): [BankAccount]
-    #       category
-    allCategoriesByUserId(id: ID): [Category]
-    #      transactions
-    transactionById(id: ID): Transaction
-    allTransactionsByBankAccountId(id: ID): [Transaction]
-    allTransactionsByByUserId(id: ID): [Transaction]
 }
 
 type Message {
