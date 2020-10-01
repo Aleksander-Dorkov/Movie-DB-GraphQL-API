@@ -9,4 +9,11 @@ input FavoriteCreate {
     favoriteType: FavoriteType
     movieDBId: ID
 }
-
+input FavoriteDelete {
+    favoriteId: ID
+}
+type Favorite {
+    favoriteId: ID
+    movieDBId: ID
+    favoriteType: FavoriteType
+}

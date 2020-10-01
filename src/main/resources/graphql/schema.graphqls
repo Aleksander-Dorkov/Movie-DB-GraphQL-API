@@ -10,13 +10,16 @@ type Mutation {
     updateAccountLock(from: UserUpdateAccountLock): Message
     updateAccountLockAdmin(form: AdminUpdateAccountLock): Message
     updateAuthorityAdmin(form: AdminUpdateAuthority): Message
-    favoriteCreate(form: FavoriteCreate): Message
+    #    fovorites
+    createFavorite(form: FavoriteCreate): Favorite
+    deleteFavorite(form: FavoriteDelete): Message
 }
 
 type Query {
     userById(id: ID): User
     allUsers: [User]
     allAuthorities: [Authorty]
+    allFavoritesByUser(id: ID): [Favorite]
 }
 
 type Message {
