@@ -95,7 +95,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully locked account");
     }
 
-    public Message updateAccountLockAdmin(AdminUpdateAccountLock form)
+    public Message updateAccountLockAdmin(@Valid AdminUpdateAccountLock form)
     {
         this.userRepository.updateAccountLock(form.getAccountNonLocked(), form.getUserId());
         String msg = form.getAccountNonLocked() ? "unlocked" : "locked";

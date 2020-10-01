@@ -1,0 +1,12 @@
+enum FavoriteType {
+    MOVIE
+    TV
+    ACTOR
+}
+
+input FavoriteCreate {
+    userId: ID
+    favoriteType: FavoriteType
+    movieDBId: ID
+}
+

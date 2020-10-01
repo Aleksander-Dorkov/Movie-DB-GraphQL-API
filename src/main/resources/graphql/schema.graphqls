@@ -10,6 +10,7 @@ type Mutation {
     updateAccountLock(from: UserUpdateAccountLock): Message
     updateAccountLockAdmin(form: AdminUpdateAccountLock): Message
     updateAuthorityAdmin(form: AdminUpdateAuthority): Message
+    favoriteCreate(form: FavoriteCreate): Message
 }
 
 type Query {
