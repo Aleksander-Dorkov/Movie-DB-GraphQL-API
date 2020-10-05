@@ -1,6 +1,8 @@
 package com.expence_tracking.app.services.favorites;
 
 import com.expence_tracking.app.domain.User;
+import com.expence_tracking.app.domain.enums.FavoriteType;
+import com.expence_tracking.app.dto.view.FavoriteCount;
 import com.expence_tracking.app.dto.view.FavoriteView;
 import com.expence_tracking.app.repostiories.FavoritesRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
@@ -28,5 +30,17 @@ public class FavoriteQueryService implements GraphQLQueryResolver
         return this.favoritesRepository.findAllByUser(one).stream()
                 .map(favorite -> this.modelMapper.map(favorite, FavoriteView.class))
                 .collect(Collectors.toList());
+    }
+
+    public List<FavoriteCount> countFavoriteByUser(Long id)
+    {
+        return this.favoritesRepository.countFavoritesByUser(id).stream().map(obj ->
+        {
+            var fav = new FavoriteCount();
+            fav.setFavoriteType((FavoriteType) obj[0]);
+            fav.setCount((Long) obj[1]);
+            return fav;
+        }).collect(Collectors.toList());
+//        return this.favoritesRepository.countAllByUser(id);
     }
 }

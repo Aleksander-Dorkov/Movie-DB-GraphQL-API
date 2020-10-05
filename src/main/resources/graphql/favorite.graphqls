@@ -17,3 +17,9 @@ type Favorite {
     movieDBId: ID
     favoriteType: FavoriteType
 }
+
+type FavoriteCount{
+    count:ID
+    favoriteType:FavoriteType,
+
+}

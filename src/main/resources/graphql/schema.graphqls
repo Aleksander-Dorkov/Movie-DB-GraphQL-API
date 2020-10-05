@@ -20,6 +20,7 @@ type Query {
     allUsers: [User]
     allAuthorities: [Authorty]
     allFavoritesByUser(id: ID): [Favorite]
+    countFavoriteByUser(id:ID):[FavoriteCount]
 }
 
 type Message {

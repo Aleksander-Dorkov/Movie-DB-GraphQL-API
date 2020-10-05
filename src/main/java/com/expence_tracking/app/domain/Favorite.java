@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "favorites")
+@Table(name = "favorites", uniqueConstraints = {@UniqueConstraint(columnNames = {"favoriteType", "movieDBId", "user_id"})})
 public class Favorite
 {
     @Id
@@ -22,7 +22,7 @@ public class Favorite
     @Enumerated(EnumType.STRING)
     private FavoriteType favoriteType;
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId")
+    @JoinColumn(name = "user_id", referencedColumnName = "userId")
     private User user;
 
 
