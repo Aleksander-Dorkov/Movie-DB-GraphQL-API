@@ -25,6 +25,10 @@ type Query {
     allAuthorities: [Authorty]
     allFavoritesByUser(id: ID): [Favorite]
     countFavoriteByUser(id: ID): [FavoriteCount]
+    allCommentsByMovieDBIdAndFavoriteType(
+        movieDBId: Int
+        favoriteType: FavoriteType
+    ): [Comment]
 }
 
 type Message {

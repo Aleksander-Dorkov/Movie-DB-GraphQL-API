@@ -27,7 +27,7 @@ public class CommentMutationService implements GraphQLMutationResolver
     private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
 
-    public CommentView createComment(@Valid  CommentCreate form)
+    public CommentView createComment(@Valid CommentCreate form)
     {
         User submitter = userRepository.getOne(form.getUserId());
         Comment newComment = this.modelMapper.map(form, Comment.class);
