@@ -1,7 +1,8 @@
 package com.expence_tracking.app.services.comment;
 
 import com.expence_tracking.app.domain.enums.FavoriteType;
-import com.expence_tracking.app.dto.view.CommentView;
+import com.expence_tracking.app.dto.view.comment.CommentView;
+import com.expence_tracking.app.dto.view.comment.Submitter;
 import com.expence_tracking.app.repostiories.CommentRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
 import graphql.kickstart.tools.GraphQLQueryResolver;
@@ -25,9 +26,10 @@ public class CommentQueryService implements GraphQLQueryResolver
         return this.commentRepository.findAllByMovieDBIdAndFavoriteType(movieDBId, favoriteType).stream()
                 .map(c ->
                 {
-                    CommentView map = this.modelMapper.map(c, CommentView.class);
-                    map.setSubmitterId(c.getSubmitter().getUserId());
-                    return map;
+                    CommentView comment = this.modelMapper.map(c, CommentView.class);
+                    Submitter submitter = this.modelMapper.map(c.getSubmitter(), Submitter.class);
+                    comment.setSubmitter(submitter);
+                    return comment;
                 }).collect(Collectors.toList());
     }
 }

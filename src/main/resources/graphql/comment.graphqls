@@ -15,10 +15,16 @@ input CommentEdit {
 type Comment {
     commentId: Int
     movieDBId: Int
-    submitterId: Int
+    submitter: Submitter
     favoriteType: FavoriteType
     title: String
     description: String
     creationDate: String
 }
 
+type Submitter {
+    userId: ID
+    username: String
+    registrationDate: String
+    accountNonLocked: Boolean
+}

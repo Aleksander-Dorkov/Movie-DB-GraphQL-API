@@ -4,8 +4,9 @@ import com.expence_tracking.app.domain.Comment;
 import com.expence_tracking.app.domain.User;
 import com.expence_tracking.app.dto.binding.comment.CommentCreate;
 import com.expence_tracking.app.dto.binding.comment.CommentEdit;
-import com.expence_tracking.app.dto.view.CommentView;
+import com.expence_tracking.app.dto.view.comment.CommentView;
 import com.expence_tracking.app.dto.view.Message;
+import com.expence_tracking.app.dto.view.comment.Submitter;
 import com.expence_tracking.app.repostiories.CommentRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
 import graphql.kickstart.tools.GraphQLMutationResolver;
@@ -37,7 +38,8 @@ public class CommentMutationService implements GraphQLMutationResolver
 
         Comment savedComment = this.commentRepository.findByCommentId(newCommentId);
         CommentView commentVew = this.modelMapper.map(savedComment, CommentView.class);
-        commentVew.setSubmitterId(savedComment.getSubmitter().getUserId());
+        Submitter map = this.modelMapper.map(savedComment.getSubmitter(), Submitter.class);
+        commentVew.setSubmitter(map);
         return commentVew;
     }
 
@@ -56,7 +58,8 @@ public class CommentMutationService implements GraphQLMutationResolver
         this.commentRepository.save(comment);
 
         CommentView commentVew = this.modelMapper.map(comment, CommentView.class);
-        commentVew.setSubmitterId(comment.getSubmitter().getUserId());
+        Submitter submitter = this.modelMapper.map(comment.getSubmitter(), Submitter.class);
+        commentVew.setSubmitter(submitter);
         return commentVew;
     }
 }

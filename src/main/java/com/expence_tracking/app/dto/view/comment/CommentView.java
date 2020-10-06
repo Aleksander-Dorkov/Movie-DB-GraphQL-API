@@ -1,4 +1,4 @@
-package com.expence_tracking.app.dto.view;
+package com.expence_tracking.app.dto.view.comment;
 
 import com.expence_tracking.app.domain.User;
 import com.expence_tracking.app.domain.enums.FavoriteType;
@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Getter
@@ -16,7 +15,7 @@ public class CommentView
 {
     private Long commentId;
     private Long movieDBId;
-    private Long submitterId;
+    private Submitter submitter;
     private FavoriteType favoriteType;
     private String title;
     private String description;
