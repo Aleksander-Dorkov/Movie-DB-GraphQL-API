@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class AuthorityService implements GraphQLQueryResolver
+public class AuthorityQueryService implements GraphQLQueryResolver
 {
     private final AuthorityRepository authorityRepository;
 
