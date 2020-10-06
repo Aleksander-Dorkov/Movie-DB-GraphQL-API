@@ -14,4 +14,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long>
     @EntityGraph("fetchUser")
     List<Comment> findAllByMovieDBIdAndFavoriteType(Long movieDBId, FavoriteType favoriteType);
 
+    @EntityGraph("fetchUser")
+    Comment findByCommentId(Long id);
 }

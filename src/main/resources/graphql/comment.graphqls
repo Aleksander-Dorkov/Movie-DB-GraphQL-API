@@ -1,0 +1,24 @@
+input CommetCreate {
+    movieDBId: Int
+    userId: Int
+    favoriteType: FavoriteType
+    title: String
+    description: String
+}
+
+input CommentEdit {
+    commentId: Int
+    title: String
+    description: String
+}
+
+type Comment {
+    commentId: Int
+    movieDBId: Int
+    submitterId: Int
+    favoriteType: FavoriteType
+    title: String
+    description: String
+    creationDate: String
+}
+

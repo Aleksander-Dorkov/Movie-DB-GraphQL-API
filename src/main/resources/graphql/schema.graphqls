@@ -13,6 +13,10 @@ type Mutation {
     #    fovorites
     createFavorite(form: FavoriteCreate): Favorite
     deleteFavorite(form: FavoriteDelete): Message
+    #    comments
+    createComment(form: CommetCreate): Comment
+    updateComment(form: CommentEdit): Comment
+    deleteComment(id: Int): Message
 }
 
 type Query {
@@ -20,7 +24,7 @@ type Query {
     allUsers: [User]
     allAuthorities: [Authorty]
     allFavoritesByUser(id: ID): [Favorite]
-    countFavoriteByUser(id:ID):[FavoriteCount]
+    countFavoriteByUser(id: ID): [FavoriteCount]
 }
 
 type Message {
