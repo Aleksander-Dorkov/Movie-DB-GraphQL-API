@@ -54,7 +54,7 @@ graphql:
     enabled: true
     corsEnabled: true
     cors:
-      allowed-origins: https://theatre-database.herokuapp.com/
+      allowed-origins: https://online-movie-database.netlify.app/
     # if you want to @ExceptionHandler annotation for custom GraphQLErrors
     exception-handlers-enabled: true
     contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
