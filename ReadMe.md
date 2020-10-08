@@ -8,5 +8,24 @@
 <h3><a href="https://theatre-database.herokuapp.com/voyager">Voyager</a></h3>
 <p>Link to <code>Voyager</code> as well</p>
 <br>
+<h3>Technologies Used</h3>
+<ul>
+    <li><h5><code>Spring Security</code></h5></li>
+    <li><h5><code>JJWT</code> JWT generator</h5></li>
+    <li><h5><code>Graphql Java Kickstart</code></h5>
+        <ul>
+            <li><h5><code>Playground Spring Boot Starter</code></h5></li>
+            <li><h5><code>Graph<i>i</i>ql Spring Boot Starter</code></h5></li>
+            <li><h5><code>Voyager Spring Boot Starter</code></h5></li>
+        </ul>
+    </li>
+    <li><h5><code>Spring Web</code></h5></li>
+    <li><h5><code>Spring Data JPA</code></h5></li>
+    <li><h5><code>Hibernate Validator</code></h5></li>
+    <li><h5><code>PostgreSQL</code> as a DB</h5></li>
+    <li><h5><code>Spring Actuator</code></h5></li>
+    <li><h5><code>ModelMapper</code></h5></li>
+    <li><h5><code>Spring Devtools</code></h5></li>
+</ul>
 <h3>Schema (PostgreSQL)</h3>
 <img src="https://i.ibb.co/N1GJBCh/Movie-DB-domain-model.png" alt="image not available"/>
