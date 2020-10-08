@@ -53,8 +53,8 @@ graphql:
     mapping: /graphql
     enabled: true
     corsEnabled: true
-#    cors:
-#      allowed-origins: http://some.domain.com
+    cors:
+      allowed-origins: https://theatre-database.herokuapp.com/
     # if you want to @ExceptionHandler annotation for custom GraphQLErrors
     exception-handlers-enabled: true
     contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
@@ -62,13 +62,13 @@ graphql:
     cdn:
       enabled: true
     headers:
-      Authorization: "Bearer token-value"
+      Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpZCI6MTQsInN1YiI6ImRlbW9fcGFpZF9hY2NvdW50IiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVJfUEFJRCIsImV4cCI6MTYwMzE3NTIzNX0.ec-kVvscR3ku2p_AEDNglS1xlwJVSh3VAG3Krx8tM-I1GDIsfr_UrAqvDjyMAakZXIuTyLMfXoa7JmRNTT1QKw"
 
 graphiql:
   cdn:
     enabled: true
   headers:
-    Authorization: "Bearer token-value"
+    Authorization: "Bearer eyJhbGciOiJIUzUxMiJ9.eyJpZCI6MTQsInN1YiI6ImRlbW9fcGFpZF9hY2NvdW50IiwiYXV0aG9yaXRpZXMiOiJST0xFX1VTRVJfUEFJRCIsImV4cCI6MTYwMzE3NTIzNX0.ec-kVvscR3ku2p_AEDNglS1xlwJVSh3VAG3Krx8tM-I1GDIsfr_UrAqvDjyMAakZXIuTyLMfXoa7JmRNTT1QKw"
   props:
     variables:
       editorTheme: 'solarized light'
