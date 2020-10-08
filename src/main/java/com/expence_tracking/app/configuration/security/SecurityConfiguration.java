@@ -50,7 +50,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter
                 .anyRequest().permitAll()
                 .and()
                 .apply(securityConfigurerAdapter());
-//        http.cors(); //use the my CORS configuration
+        http.cors(); //use the my CORS configuration
     }
 
     private JWTConfigurer securityConfigurerAdapter()
