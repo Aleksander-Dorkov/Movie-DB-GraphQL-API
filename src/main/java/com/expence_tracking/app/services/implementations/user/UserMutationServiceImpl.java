@@ -1,4 +1,4 @@
-package com.expence_tracking.app.services.user;
+package com.expence_tracking.app.services.implementations.user;
 
 import com.expence_tracking.app.configuration.exceptions.PasswordMissMatchException;
 import com.expence_tracking.app.configuration.exceptions.UserAlreadyExistsException;
@@ -9,7 +9,7 @@ import com.expence_tracking.app.dto.binding.user.*;
 import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.AuthorityRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
-import graphql.kickstart.tools.GraphQLMutationResolver;
+import com.expence_tracking.app.services.iterfaces.user.UserMutationService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -26,7 +26,7 @@ import java.time.LocalDateTime;
 @Service
 @Validated
 @RequiredArgsConstructor
-public class UserMutationService implements GraphQLMutationResolver
+public class UserMutationServiceImpl implements UserMutationService
 {
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
@@ -35,6 +35,7 @@ public class UserMutationService implements GraphQLMutationResolver
     private final TokenProvider tokenProvider;
     private final BCryptPasswordEncoder passwordEncoder;
 
+    @Override
     @PreAuthorize("isAnonymous()")
     public JWTToken createJWT(@Valid UserCreateJWT form)
     {
@@ -55,6 +56,7 @@ public class UserMutationService implements GraphQLMutationResolver
 
     }
 
+    @Override
     @PreAuthorize("isAnonymous()")
     public Message createUser(@Valid UserCreate form)
     {
@@ -71,6 +73,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully registered");
     }
 
+    @Override
     public Message updatePassword(@Valid UserUpdatePassword form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
@@ -83,6 +86,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully changed password");
     }
 
+    @Override
     public Message updateAccountLock(@Valid UserUpdateAccountLock form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
@@ -95,6 +99,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully locked account");
     }
 
+    @Override
     public Message updateAccountLockAdmin(@Valid AdminUpdateAccountLock form)
     {
         this.userRepository.updateAccountLock(form.getAccountNonLocked(), form.getUserId());
@@ -102,6 +107,7 @@ public class UserMutationService implements GraphQLMutationResolver
         return new Message("Successfully " + msg + " the users account");
     }
 
+    @Override
     public Message updateAuthorityAdmin(AdminUpdateAuthority form)
     {
         this.userRepository.updateAuthority(form.getUserId(), form.getAuthorityId());

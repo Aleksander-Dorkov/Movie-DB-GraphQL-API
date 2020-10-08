@@ -2,7 +2,7 @@ package com.expence_tracking.app.configuration.security;
 
 import com.expence_tracking.app.configuration.security.jwt.JWTConfigurer;
 import com.expence_tracking.app.configuration.security.jwt.TokenProvider;
-import com.expence_tracking.app.services.user.UserService;
+import com.expence_tracking.app.services.iterfaces.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

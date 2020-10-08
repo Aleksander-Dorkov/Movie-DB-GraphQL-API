@@ -1,4 +1,4 @@
-package com.expence_tracking.app.services.favorites;
+package com.expence_tracking.app.services.implementations.favorites;
 
 import com.expence_tracking.app.domain.Favorite;
 import com.expence_tracking.app.domain.User;
@@ -8,7 +8,7 @@ import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.FavoritesRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
 import com.expence_tracking.app.dto.binding.favorites.FavoriteDelete;
-import graphql.kickstart.tools.GraphQLMutationResolver;
+import com.expence_tracking.app.services.iterfaces.favorites.FavoritesMutationServiceI;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,12 +19,13 @@ import javax.validation.Valid;
 @Service
 @Validated
 @RequiredArgsConstructor
-public class FavoritesMutationService implements GraphQLMutationResolver
+public class FavoritesMutationServiceImpl implements FavoritesMutationServiceI
 {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     private final FavoritesRepository favoritesRepository;
 
+    @Override
     public FavoriteView createFavorite(@Valid FavoriteCreate form)
     {
         User user = this.userRepository.getOne(form.getUserId());
@@ -36,6 +37,7 @@ public class FavoritesMutationService implements GraphQLMutationResolver
         return this.modelMapper.map(saved, FavoriteView.class);
     }
 
+    @Override
     public Message deleteFavorite(@Valid FavoriteDelete form)
     {
         this.favoritesRepository.deleteById(form.getFavoriteId());

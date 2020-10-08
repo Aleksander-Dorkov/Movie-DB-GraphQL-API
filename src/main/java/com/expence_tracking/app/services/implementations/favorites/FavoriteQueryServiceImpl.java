@@ -1,4 +1,4 @@
-package com.expence_tracking.app.services.favorites;
+package com.expence_tracking.app.services.implementations.favorites;
 
 import com.expence_tracking.app.domain.User;
 import com.expence_tracking.app.domain.enums.FavoriteType;
@@ -6,7 +6,7 @@ import com.expence_tracking.app.dto.view.FavoriteCount;
 import com.expence_tracking.app.dto.view.FavoriteView;
 import com.expence_tracking.app.repostiories.FavoritesRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
-import graphql.kickstart.tools.GraphQLQueryResolver;
+import com.expence_tracking.app.services.iterfaces.favorites.FavoriteQueryService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -18,12 +18,13 @@ import java.util.stream.Collectors;
 @Service
 @Validated
 @RequiredArgsConstructor
-public class FavoriteQueryService implements GraphQLQueryResolver
+public class FavoriteQueryServiceImpl implements FavoriteQueryService
 {
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     private final FavoritesRepository favoritesRepository;
 
+    @Override
     public List<FavoriteView> allFavoritesByUser(Long id)
     {
         User one = this.userRepository.getOne(id);
@@ -32,6 +33,7 @@ public class FavoriteQueryService implements GraphQLQueryResolver
                 .collect(Collectors.toList());
     }
 
+    @Override
     public List<FavoriteCount> countFavoriteByUser(Long id)
     {
         return this.favoritesRepository.countFavoritesByUser(id).stream().map(obj ->

@@ -1,4 +1,4 @@
-package com.expence_tracking.app.services.comment;
+package com.expence_tracking.app.services.implementations.comment;
 
 import com.expence_tracking.app.domain.Comment;
 import com.expence_tracking.app.domain.User;
@@ -9,7 +9,7 @@ import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.dto.view.comment.Submitter;
 import com.expence_tracking.app.repostiories.CommentRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
-import graphql.kickstart.tools.GraphQLMutationResolver;
+import com.expence_tracking.app.services.iterfaces.comment.CommentMutationService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -22,12 +22,13 @@ import java.time.LocalDateTime;
 @Service
 @Validated
 @AllArgsConstructor
-public class CommentMutationService implements GraphQLMutationResolver
+public class CommentMutationServiceImpl implements CommentMutationService
 {
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
 
+    @Override
     public CommentView createComment(@Valid CommentCreate form)
     {
         User submitter = userRepository.getOne(form.getUserId());
@@ -43,12 +44,14 @@ public class CommentMutationService implements GraphQLMutationResolver
         return commentVew;
     }
 
+    @Override
     public Message deleteComment(@NotNull Long id)
     {
         this.commentRepository.deleteById(id);
         return new Message("Successfully deleted comment");
     }
 
+    @Override
     public CommentView updateComment(@Valid CommentEdit form)
     {
         Comment comment = this.commentRepository.findByCommentId(form.getCommentId());

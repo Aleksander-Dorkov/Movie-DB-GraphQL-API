@@ -1,15 +1,15 @@
-package com.expence_tracking.app.services.user;
+package com.expence_tracking.app.services.implementations.user;
 
 import com.expence_tracking.app.repostiories.UserRepository;
+import com.expence_tracking.app.services.iterfaces.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class UserService implements UserDetailsService
+public class UserServiceImpl implements UserService
 {
     private final UserRepository userRepository;
 
