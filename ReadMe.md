@@ -1,11 +1,11 @@
 <h1>GraphQL API form my Movie DB React App</h1>
-<h3><a href="https://theatre-database.herokuapp.com/playground">Playground (click)</a></h3>
+<h3><a href="https://theatre-database.herokuapp.com/playground">Playground</a></h3>
 <p>On the right side you will find 2 buttons <code>Docs</code> and <code>Schema</code>.
     Click on the on the <code>Docs</code> and try a few queries
 </p>
-<h3><a href="https://theatre-database.herokuapp.com/graphiql">Graph<i>i</i>QL (click)</a></h3>
+<h3><a href="https://theatre-database.herokuapp.com/graphiql">Graph<i>i</i>QL</a></h3>
 <p>Same as the above. In the top right side click the <code>Docs</code> button and go from there</p>
-<h3><a href="https://theatre-database.herokuapp.com/voyager">Voyager (click)</a></h3>
+<h3><a href="https://theatre-database.herokuapp.com/voyager">Voyager</a></h3>
 <p>Link to <code>Voyager</code> as well</p>
 <br>
 <h3>Technologies Used</h3>
@@ -14,9 +14,9 @@
     <li><h5><code>JJWT</code> JWT generator</h5></li>
     <li><h5><code>Graphql Java Kickstart</code></h5>
         <ul>
-            <li><h5><code>Playground Spring Boot Starter</code></h5></li>
-            <li><h5><code>Graph<i>i</i>ql Spring Boot Starter</code></h5></li>
-            <li><h5><code>Voyager Spring Boot Starter</code></h5></li>
+            <li><h5><code>Playground</code></h5></li>
+            <li><h5><code>Graph<i>i</i>ql</code></h5></li>
+            <li><h5><code>Voyager</code></h5></li>
         </ul>
     </li>
     <li><h5><code>Spring Web</code></h5></li>
