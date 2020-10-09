@@ -12,6 +12,7 @@ import com.expence_tracking.app.repostiories.UserRepository;
 import com.expence_tracking.app.services.iterfaces.comment.CommentMutationService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -29,6 +30,7 @@ public class CommentMutationServiceImpl implements CommentMutationService
     private final ModelMapper modelMapper;
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public CommentView createComment(@Valid CommentCreate form)
     {
         User submitter = userRepository.getOne(form.getUserId());
@@ -45,6 +47,7 @@ public class CommentMutationServiceImpl implements CommentMutationService
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public Message deleteComment(@NotNull Long id)
     {
         this.commentRepository.deleteById(id);
@@ -52,6 +55,7 @@ public class CommentMutationServiceImpl implements CommentMutationService
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public CommentView updateComment(@Valid CommentEdit form)
     {
         Comment comment = this.commentRepository.findByCommentId(form.getCommentId());

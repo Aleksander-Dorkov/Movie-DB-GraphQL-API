@@ -9,7 +9,7 @@
 <h3><a href="https://theatre-database.herokuapp.com/voyager">Voyager (click)</a></h3>
 <p>Link to <code>Voyager</code> as well</p>
 
-<h3>Technologies Used</h3>
+<h3>Dependencies Used</h3>
 <ul>
     <li><h5><code>Spring Security</code></h5></li>
     <li><h5><code>JJWT</code> JWT generator</h5></li>
@@ -27,6 +27,7 @@
     <li><h5><code>Spring Actuator</code></h5></li>
     <li><h5><code>ModelMapper</code></h5></li>
     <li><h5><code>Spring Devtools</code></h5></li>
+    <li><h5><code>Lombok</code></h5></li>
 </ul>
 
 <h3>Schema (PostgreSQL)</h3>

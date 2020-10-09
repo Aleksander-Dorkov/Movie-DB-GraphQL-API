@@ -11,6 +11,7 @@ import com.expence_tracking.app.dto.binding.favorites.FavoriteDelete;
 import com.expence_tracking.app.services.iterfaces.favorites.FavoritesMutationServiceI;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
@@ -26,6 +27,7 @@ public class FavoritesMutationServiceImpl implements FavoritesMutationServiceI
     private final FavoritesRepository favoritesRepository;
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public FavoriteView createFavorite(@Valid FavoriteCreate form)
     {
         User user = this.userRepository.getOne(form.getUserId());
@@ -38,6 +40,7 @@ public class FavoritesMutationServiceImpl implements FavoritesMutationServiceI
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public Message deleteFavorite(@Valid FavoriteDelete form)
     {
         this.favoritesRepository.deleteById(form.getFavoriteId());

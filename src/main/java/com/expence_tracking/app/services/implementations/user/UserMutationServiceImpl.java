@@ -74,6 +74,7 @@ public class UserMutationServiceImpl implements UserMutationService
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public Message updatePassword(@Valid UserUpdatePassword form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
@@ -87,6 +88,7 @@ public class UserMutationServiceImpl implements UserMutationService
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public Message updateAccountLock(@Valid UserUpdateAccountLock form) throws PasswordMissMatchException
     {
         User user = this.userRepository.findByUserId(form.getUserId());
@@ -100,6 +102,7 @@ public class UserMutationServiceImpl implements UserMutationService
     }
 
     @Override
+    @PreAuthorize("hasAnyAuthority(ROLE_ADMIN)")
     public Message updateAccountLockAdmin(@Valid AdminUpdateAccountLock form)
     {
         this.userRepository.updateAccountLock(form.getAccountNonLocked(), form.getUserId());
@@ -108,6 +111,7 @@ public class UserMutationServiceImpl implements UserMutationService
     }
 
     @Override
+    @PreAuthorize("hasAnyAuthority(ROLE_ADMIN)")
     public Message updateAuthorityAdmin(AdminUpdateAuthority form)
     {
         this.userRepository.updateAuthority(form.getUserId(), form.getAuthorityId());
