@@ -46,6 +46,5 @@ public class FavoriteQueryServiceImpl implements FavoriteQueryService
             fav.setCount((Long) obj[1]);
             return fav;
         }).collect(Collectors.toList());
-//        return this.favoritesRepository.countAllByUser(id);
     }
 }

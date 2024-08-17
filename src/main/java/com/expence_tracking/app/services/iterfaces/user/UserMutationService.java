@@ -2,26 +2,40 @@ package com.expence_tracking.app.services.iterfaces.user;
 
 import com.expence_tracking.app.configuration.exceptions.PasswordMissMatchException;
 import com.expence_tracking.app.configuration.security.jwt.JWTToken;
-import com.expence_tracking.app.dto.binding.user.*;
+import com.expence_tracking.app.dto.binding.user.AdminUpdateAccountLock;
+import com.expence_tracking.app.dto.binding.user.AdminUpdateAuthority;
+import com.expence_tracking.app.dto.binding.user.UserCreate;
+import com.expence_tracking.app.dto.binding.user.UserCreateJWT;
+import com.expence_tracking.app.dto.binding.user.UserUpdateAccountLock;
+import com.expence_tracking.app.dto.binding.user.UserUpdatePassword;
 import com.expence_tracking.app.dto.view.Message;
-import graphql.kickstart.tools.GraphQLMutationResolver;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 
 import javax.validation.Valid;
 
-public interface UserMutationService extends GraphQLMutationResolver
-{
+@Controller
+public interface UserMutationService {
+
+    @MutationMapping
     @PreAuthorize("isAnonymous()")
-    JWTToken createJWT(@Valid UserCreateJWT form);
+    JWTToken createJWT(@Argument("form") @Valid UserCreateJWT form);
 
+    @MutationMapping
     @PreAuthorize("isAnonymous()")
-    Message createUser(@Valid UserCreate form);
+    Message createUser(@Argument("form") @Valid UserCreate form);
 
-    Message updatePassword(@Valid UserUpdatePassword form) throws PasswordMissMatchException;
+    @MutationMapping
+    Message updatePassword(@Argument("form") @Valid UserUpdatePassword form) throws PasswordMissMatchException;
 
-    Message updateAccountLock(@Valid UserUpdateAccountLock form) throws PasswordMissMatchException;
+    @MutationMapping
+    Message updateAccountLock(@Argument("form") @Valid UserUpdateAccountLock form) throws PasswordMissMatchException;
 
-    Message updateAccountLockAdmin(@Valid AdminUpdateAccountLock form);
+    @MutationMapping
+    Message updateAccountLockAdmin(@Argument("form") @Valid AdminUpdateAccountLock form);
 
-    Message updateAuthorityAdmin(AdminUpdateAuthority form);
+    @MutationMapping
+    Message updateAuthorityAdmin(@Argument("form") AdminUpdateAuthority form);
 }

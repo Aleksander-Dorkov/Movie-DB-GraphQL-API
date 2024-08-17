@@ -4,13 +4,18 @@ import com.expence_tracking.app.dto.binding.favorites.FavoriteCreate;
 import com.expence_tracking.app.dto.binding.favorites.FavoriteDelete;
 import com.expence_tracking.app.dto.view.FavoriteView;
 import com.expence_tracking.app.dto.view.Message;
-import graphql.kickstart.tools.GraphQLMutationResolver;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.stereotype.Controller;
 
 import javax.validation.Valid;
 
-public interface FavoritesMutationServiceI extends GraphQLMutationResolver
-{
-    FavoriteView createFavorite(@Valid FavoriteCreate form);
+@Controller
+public interface FavoritesMutationServiceI {
 
-    Message deleteFavorite(@Valid FavoriteDelete form);
+    @MutationMapping
+    FavoriteView createFavorite(@Argument("form") @Valid FavoriteCreate form);
+
+    @MutationMapping
+    Message deleteFavorite(@Argument("form") @Valid FavoriteDelete form);
 }

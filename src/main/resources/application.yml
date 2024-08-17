@@ -6,7 +6,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     password: 1234
     username: postgres
-    initialization-mode: always
   #Jackson
   jackson:
     serialization:
@@ -15,24 +14,19 @@ spring:
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         default_schema: public
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
-        generate_statistics: true
+#        generate_statistics: true
     show-sql: true
-#Logging
-logging:
-  level:
-    org:
-      hibernate:
-        stat: debug
-    com:
-      secure:
-        example: trace
-    root: info
+  graphql:
+    graphiql:
+      enabled: true
+      path: /graphiql
+    path: /graphql
 
 #Actuator
 management:
@@ -48,16 +42,6 @@ management:
   server:
     port: 8080
 
-graphql:
-  servlet:
-    mapping: /graphql
-    enabled: true
-    corsEnabled: false
-#    cors:
-#      allowed-origins: https://online-movie-database.netlify.app
-    # if you want to @ExceptionHandler annotation for custom GraphQLErrors
-    exception-handlers-enabled: true
-    contextSetting: PER_REQUEST_WITH_INSTRUMENTATION
   playground:
     cdn:
       enabled: true
@@ -72,5 +56,3 @@ graphiql:
   props:
     variables:
       editorTheme: 'solarized light'
-
-
