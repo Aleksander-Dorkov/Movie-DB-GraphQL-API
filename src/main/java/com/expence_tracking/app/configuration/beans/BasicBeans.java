@@ -10,14 +10,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class BasicBeans {
 
     @Bean
-    public ModelMapper getModelMapper() {
+    public ModelMapper modelMapper() {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         return modelMapper;
     }
 
     @Bean
-    public BCryptPasswordEncoder getBCryptPasswordEncoder() {
+    public BCryptPasswordEncoder BCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }
