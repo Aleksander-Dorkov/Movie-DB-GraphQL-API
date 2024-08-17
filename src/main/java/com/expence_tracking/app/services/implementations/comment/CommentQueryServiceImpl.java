@@ -4,7 +4,6 @@ import com.expence_tracking.app.domain.enums.FavoriteType;
 import com.expence_tracking.app.dto.view.comment.CommentView;
 import com.expence_tracking.app.dto.view.comment.Submitter;
 import com.expence_tracking.app.repostiories.CommentRepository;
-import com.expence_tracking.app.repostiories.UserRepository;
 import com.expence_tracking.app.services.iterfaces.comment.CommentQueryService;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -15,15 +14,13 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-public class CommentQueryServiceImpl implements CommentQueryService
-{
-    private final UserRepository userRepository;
+public class CommentQueryServiceImpl implements CommentQueryService {
+
     private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
 
     @Override
-    public List<CommentView> allCommentsByMovieDBIdAndFavoriteType(Long movieDBId, FavoriteType favoriteType)
-    {
+    public List<CommentView> allCommentsByMovieDBIdAndFavoriteType(Long movieDBId, FavoriteType favoriteType) {
         return this.commentRepository.findAllByMovieDBIdAndFavoriteType(movieDBId, favoriteType).stream()
                 .map(c ->
                 {

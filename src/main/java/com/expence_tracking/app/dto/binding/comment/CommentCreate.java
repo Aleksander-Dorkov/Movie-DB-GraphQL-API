@@ -1,17 +1,16 @@
 package com.expence_tracking.app.dto.binding.comment;
 
 import com.expence_tracking.app.domain.enums.FavoriteType;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
-
 @Getter
 @Setter
 @NoArgsConstructor
-public class CommentCreate
-{
+public class CommentCreate {
+
     @NotNull
     private Long movieDBId;
     @NotNull

@@ -12,8 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>
-{
+public interface UserRepository extends JpaRepository<User, Long> {
+
     @EntityGraph("authoritiesJoin")
     User findByUsername(String username);
 

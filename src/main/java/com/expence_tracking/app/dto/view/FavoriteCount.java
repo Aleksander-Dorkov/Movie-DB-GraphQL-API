@@ -8,8 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class FavoriteCount
-{
+public class FavoriteCount {
+
     private Long count;
     private FavoriteType favoriteType;
 }

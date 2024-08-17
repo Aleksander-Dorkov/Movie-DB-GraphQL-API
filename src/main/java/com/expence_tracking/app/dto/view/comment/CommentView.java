@@ -1,6 +1,5 @@
 package com.expence_tracking.app.dto.view.comment;
 
-import com.expence_tracking.app.domain.User;
 import com.expence_tracking.app.domain.enums.FavoriteType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,8 +10,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class CommentView
-{
+public class CommentView {
+
     private Long commentId;
     private Long movieDBId;
     private Submitter submitter;

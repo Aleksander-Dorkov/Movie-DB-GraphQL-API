@@ -4,12 +4,11 @@ import com.expence_tracking.app.dto.binding.comment.CommentCreate;
 import com.expence_tracking.app.dto.binding.comment.CommentEdit;
 import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.dto.view.comment.CommentView;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
-
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 
 @Controller
 public interface CommentMutationService {

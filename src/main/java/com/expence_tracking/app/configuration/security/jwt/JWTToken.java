@@ -7,13 +7,11 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class JWTToken
-{
+public class JWTToken {
 
     private String idToken;
 
-    public JWTToken(String idToken)
-    {
+    public JWTToken(String idToken) {
         this.idToken = idToken;
     }
 }

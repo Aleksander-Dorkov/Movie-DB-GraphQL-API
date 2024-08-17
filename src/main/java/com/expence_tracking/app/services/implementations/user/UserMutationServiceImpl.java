@@ -15,6 +15,7 @@ import com.expence_tracking.app.dto.view.Message;
 import com.expence_tracking.app.repostiories.AuthorityRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
 import com.expence_tracking.app.services.iterfaces.user.UserMutationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -25,14 +26,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
 import java.time.LocalDateTime;
 
 @Service
 @Validated
 @RequiredArgsConstructor
-public class UserMutationServiceImpl implements UserMutationService
-{
+public class UserMutationServiceImpl implements UserMutationService {
+
     private final UserRepository userRepository;
     private final AuthorityRepository authorityRepository;
     private final AuthenticationManager authenticationManager;
@@ -42,17 +42,14 @@ public class UserMutationServiceImpl implements UserMutationService
 
     @Override
     @PreAuthorize("isAnonymous()")
-    public JWTToken createJWT(@Valid UserCreateJWT form)
-    {
+    public JWTToken createJWT(@Valid UserCreateJWT form) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(form.getUsername(), form.getPassword());
         Authentication authentication = this.authenticationManager.authenticate(authenticationToken);
         User user;
         String jwt;
-        try
-        {
+        try {
             user = (User) authentication.getPrincipal();
-        } catch (ClassCastException classCastException)
-        {
+        } catch (ClassCastException classCastException) {
             jwt = tokenProvider.createToken(authentication, form.getRememberMe(), -1);
             return new JWTToken(jwt);
         }
@@ -63,10 +60,8 @@ public class UserMutationServiceImpl implements UserMutationService
 
     @Override
     @PreAuthorize("isAnonymous()")
-    public Message createUser(@Valid UserCreate form)
-    {
-        if (this.userRepository.findByUsername(form.getUsername()) != null)
-        {
+    public Message createUser(@Valid UserCreate form) {
+        if (this.userRepository.findByUsername(form.getUsername()) != null) {
             throw new UserAlreadyExistsException("User with this username is all ready registered");
         }
         User user = this.modelMapper.map(form, User.class);
@@ -80,11 +75,9 @@ public class UserMutationServiceImpl implements UserMutationService
 
     @Override
     @PreAuthorize("isAuthenticated()")
-    public Message updatePassword(@Valid UserUpdatePassword form) throws PasswordMissMatchException
-    {
+    public Message updatePassword(@Valid UserUpdatePassword form) throws PasswordMissMatchException {
         User user = this.userRepository.findByUserId(form.getUserId());
-        if (!this.passwordEncoder.matches(form.getOldPassword(), user.getPassword()))
-        {
+        if (!this.passwordEncoder.matches(form.getOldPassword(), user.getPassword())) {
             throw new PasswordMissMatchException("The password you inputted doesnt match your current password");
         }
         user.setPassword(this.passwordEncoder.encode(form.getNewPassword()));
@@ -94,11 +87,9 @@ public class UserMutationServiceImpl implements UserMutationService
 
     @Override
     @PreAuthorize("isAuthenticated()")
-    public Message updateAccountLock(@Valid UserUpdateAccountLock form) throws PasswordMissMatchException
-    {
+    public Message updateAccountLock(@Valid UserUpdateAccountLock form) throws PasswordMissMatchException {
         User user = this.userRepository.findByUserId(form.getUserId());
-        if (!this.passwordEncoder.matches(form.getPassword(), user.getPassword()))
-        {
+        if (!this.passwordEncoder.matches(form.getPassword(), user.getPassword())) {
             throw new PasswordMissMatchException("The password you inputted doesnt match your current password");
         }
         user.setAccountNonLocked(false);
@@ -108,8 +99,7 @@ public class UserMutationServiceImpl implements UserMutationService
 
     @Override
     @PreAuthorize("hasAnyAuthority(ROLE_ADMIN)")
-    public Message updateAccountLockAdmin(@Valid AdminUpdateAccountLock form)
-    {
+    public Message updateAccountLockAdmin(@Valid AdminUpdateAccountLock form) {
         this.userRepository.updateAccountLock(form.getAccountNonLocked(), form.getUserId());
         String msg = form.getAccountNonLocked() ? "unlocked" : "locked";
         return new Message("Successfully " + msg + " the users account");
@@ -117,8 +107,7 @@ public class UserMutationServiceImpl implements UserMutationService
 
     @Override
     @PreAuthorize("hasAnyAuthority(ROLE_ADMIN)")
-    public Message updateAuthorityAdmin(AdminUpdateAuthority form)
-    {
+    public Message updateAuthorityAdmin(AdminUpdateAuthority form) {
         this.userRepository.updateAuthority(form.getUserId(), form.getAuthorityId());
         return new Message("Successfully changed the users authority");
     }

@@ -12,11 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
  * so we just send 1 "dummy" request to this url when the React App starts to "wake it up"
  */
 @RestController
-public class HerokuDummyController
-{
+public class HerokuDummyController {
+
     @PostMapping("/heroku/start")
-    public ResponseEntity<Message> wakeUp()
-    {
+    public ResponseEntity<Message> wakeUp() {
         return new ResponseEntity<>(new Message("app woke up"), HttpStatus.OK);
     }
 }

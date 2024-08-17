@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FavoritesRepository extends JpaRepository<Favorite, Long>
-{
+public interface FavoritesRepository extends JpaRepository<Favorite, Long> {
+
     List<Favorite> findAllByUser(User user);
 
     @Query("select f.favoriteType, count(f) from Favorite as f where f.user.userId=:userId group by f.favoriteType")

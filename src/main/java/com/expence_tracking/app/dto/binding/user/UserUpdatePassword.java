@@ -7,8 +7,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserUpdatePassword
-{
+public class UserUpdatePassword {
+
     private Long userId;
     private String oldPassword;
     private String newPassword;

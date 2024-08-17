@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Submitter
-{
+public class Submitter {
+
     private Long userId;
     private String username;
     private LocalDateTime registrationDate;

@@ -4,35 +4,34 @@ import com.expence_tracking.app.domain.Comment;
 import com.expence_tracking.app.domain.User;
 import com.expence_tracking.app.dto.binding.comment.CommentCreate;
 import com.expence_tracking.app.dto.binding.comment.CommentEdit;
-import com.expence_tracking.app.dto.view.comment.CommentView;
 import com.expence_tracking.app.dto.view.Message;
+import com.expence_tracking.app.dto.view.comment.CommentView;
 import com.expence_tracking.app.dto.view.comment.Submitter;
 import com.expence_tracking.app.repostiories.CommentRepository;
 import com.expence_tracking.app.repostiories.UserRepository;
 import com.expence_tracking.app.services.iterfaces.comment.CommentMutationService;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Service
 @Validated
 @AllArgsConstructor
-public class CommentMutationServiceImpl implements CommentMutationService
-{
+public class CommentMutationServiceImpl implements CommentMutationService {
+
     private final UserRepository userRepository;
     private final CommentRepository commentRepository;
     private final ModelMapper modelMapper;
 
     @Override
     @PreAuthorize("isAuthenticated()")
-    public CommentView createComment(@Valid CommentCreate form)
-    {
+    public CommentView createComment(@Valid CommentCreate form) {
         User submitter = userRepository.getOne(form.getUserId());
         Comment newComment = this.modelMapper.map(form, Comment.class);
         newComment.setCreationDate(LocalDateTime.now());
@@ -48,16 +47,14 @@ public class CommentMutationServiceImpl implements CommentMutationService
 
     @Override
     @PreAuthorize("isAuthenticated()")
-    public Message deleteComment(@NotNull Long id)
-    {
+    public Message deleteComment(@NotNull Long id) {
         this.commentRepository.deleteById(id);
         return new Message("Successfully deleted comment");
     }
 
     @Override
     @PreAuthorize("isAuthenticated()")
-    public CommentView updateComment(@Valid CommentEdit form)
-    {
+    public CommentView updateComment(@Valid CommentEdit form) {
         Comment comment = this.commentRepository.findByCommentId(form.getCommentId());
         assert comment != null;
         comment.setTitle(form.getTitle());

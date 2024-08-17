@@ -19,16 +19,15 @@ import java.util.stream.Collectors;
 @Service
 @Validated
 @RequiredArgsConstructor
-public class FavoriteQueryServiceImpl implements FavoriteQueryService
-{
+public class FavoriteQueryServiceImpl implements FavoriteQueryService {
+
     private final ModelMapper modelMapper;
     private final UserRepository userRepository;
     private final FavoritesRepository favoritesRepository;
 
     @Override
     @PreAuthorize("isAuthenticated()")
-    public List<FavoriteView> allFavoritesByUser(Long id)
-    {
+    public List<FavoriteView> allFavoritesByUser(Long id) {
         User one = this.userRepository.getOne(id);
         return this.favoritesRepository.findAllByUser(one).stream()
                 .map(favorite -> this.modelMapper.map(favorite, FavoriteView.class))
@@ -37,8 +36,7 @@ public class FavoriteQueryServiceImpl implements FavoriteQueryService
 
     @Override
     @PreAuthorize("isAuthenticated()")
-    public List<FavoriteCount> countFavoriteByUser(Long id)
-    {
+    public List<FavoriteCount> countFavoriteByUser(Long id) {
         return this.favoritesRepository.countFavoritesByUser(id).stream().map(obj ->
         {
             var fav = new FavoriteCount();

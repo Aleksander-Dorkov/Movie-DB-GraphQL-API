@@ -4,11 +4,10 @@ import com.expence_tracking.app.dto.binding.favorites.FavoriteCreate;
 import com.expence_tracking.app.dto.binding.favorites.FavoriteDelete;
 import com.expence_tracking.app.dto.view.FavoriteView;
 import com.expence_tracking.app.dto.view.Message;
+import jakarta.validation.Valid;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.stereotype.Controller;
-
-import javax.validation.Valid;
 
 @Controller
 public interface FavoritesMutationServiceI {

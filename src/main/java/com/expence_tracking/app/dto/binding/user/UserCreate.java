@@ -9,8 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @ValidateConfirmPassword
-public class UserCreate
-{
+public class UserCreate {
 
     private String username;
     private String password;

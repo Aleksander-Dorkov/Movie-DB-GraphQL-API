@@ -1,6 +1,5 @@
 package com.expence_tracking.app.domain.enums;
 
-public enum FavoriteType
-{
+public enum FavoriteType {
     MOVIE, TV, ACTOR
 }

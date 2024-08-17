@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
-public interface CommentQueryService
-{
+public interface CommentQueryService {
+
     @QueryMapping
     List<CommentView> allCommentsByMovieDBIdAndFavoriteType(Long movieDBId, FavoriteType favoriteType);
 }

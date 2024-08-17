@@ -9,12 +9,11 @@ import com.expence_tracking.app.dto.binding.user.UserCreateJWT;
 import com.expence_tracking.app.dto.binding.user.UserUpdateAccountLock;
 import com.expence_tracking.app.dto.binding.user.UserUpdatePassword;
 import com.expence_tracking.app.dto.view.Message;
+import jakarta.validation.Valid;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-
-import javax.validation.Valid;
 
 @Controller
 public interface UserMutationService {
