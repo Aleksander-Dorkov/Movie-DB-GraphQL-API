@@ -29,11 +29,7 @@ public class TokenProvider {
     private final static String USER_ID_KEY = "id";
     private final static String SECRET_KEY = "thisIsAVeryLongSecretKeyThatIsAtLeast256BitsLongForJWTSigning";
 
-    private final SecretKey key;
-
-    public TokenProvider() {
-        this.key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
-    }
+    private final SecretKey key = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
 
     public String createToken(Authentication authentication, Boolean rememberMe, long id) {
         String authorities = authentication.getAuthorities().stream()
