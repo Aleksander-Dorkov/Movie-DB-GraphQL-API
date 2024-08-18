@@ -7,28 +7,27 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.GenericFilterBean;
+import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
-public class JWTFilter extends GenericFilterBean {
+@Component
+@RequiredArgsConstructor
+public class JWTFilter extends OncePerRequestFilter {
 
     private final TokenProvider tokenProvider;
 
-    public JWTFilter(TokenProvider tokenProvider) {
-        this.tokenProvider = tokenProvider;
-    }
-
-    //It's called one every request
     @Override
-    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
-            throws IOException, ServletException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
-            HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
-            String jwt = resolveToken(httpServletRequest); //get the jwt value from the "Bearer " header
+            String jwt = resolveToken(request); //get the jwt value from the "Bearer " header
 
             if (StringUtils.hasText(jwt) && this.tokenProvider.validateToken(jwt)) //check if (jwt) is null and parse token see if it was tempered with
             {
@@ -37,15 +36,15 @@ public class JWTFilter extends GenericFilterBean {
             }
 
             //IF there is not token, just filter
-            filterChain.doFilter(servletRequest, servletResponse);
+            filterChain.doFilter(request, response);
         } catch (ExpiredJwtException eje) {
-            ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
 
     //get the jwt value from the "Bearer " header
     private String resolveToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader(JWTConfigurer.AUTHORIZATION_HEADER);
+        String bearerToken = request.getHeader(HttpHeaders.AUTHORIZATION);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }
